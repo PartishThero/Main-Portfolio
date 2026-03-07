@@ -2,30 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import spriteSheet from '../assets/image1-removebg.png';
-
-const FRAME_W = 384;
-const FRAME_H = 341;
-const SCALE   = 4;
-
-const sprite = (col, row, scale = SCALE) => ({
-  backgroundImage:    `url(${spriteSheet})`,
-  backgroundPosition: `-${col * FRAME_W / scale}px -${row * FRAME_H / scale}px`,
-  backgroundSize:     `${4 * FRAME_W / scale}px ${3 * FRAME_H / scale}px`,
-  backgroundRepeat:   'no-repeat',
-  imageRendering:     'pixelated',
-  width:              `${FRAME_W / scale}px`,
-  height:             `${FRAME_H / scale}px`,
-  flexShrink:         0,
-});
-
-const defaultSprite = sprite(3, 1);
+import headImg       from '../assets/Sleepy pixel.png';
+import aboutIcon     from '../assets/question pixel.png';
+import skillsIcon    from '../assets/Crazy pixel.png';
+import projectsIcon  from '../assets/heart pixel.png';
+import contactIcon   from '../assets/Naughty Pixel.png';
 
 const pageConfig = {
-  '/about':    { spriteStyle: sprite(3, 2), message: "Ah, curious about me? Good taste!"       },
-  '/skills':   { spriteStyle: sprite(3, 0), message: "Time to get nerdy. Let's gooo."          },
-  '/projects': { spriteStyle: sprite(1, 1), message: "These are my babies. Handle with care."  },
-  '/contact':  { spriteStyle: sprite(0, 0), message: "Let's build something awesome together!" },
+  '/about':    { icon: aboutIcon,    message: "Ah, curious about me? Good taste!"       },
+  '/skills':   { icon: skillsIcon,   message: "Time to get nerdy. Let's gooo."          },
+  '/projects': { icon: projectsIcon, message: "These are my babies. Handle with care."  },
+  '/contact':  { icon: contactIcon,  message: "Let's build something awesome together!" },
 };
 
 export default function Navbar() {
@@ -34,15 +21,15 @@ export default function Navbar() {
   const config    = pageConfig[location.pathname];
   const navPadding = isLanding ? '3rem 3rem' : '0rem 3rem';
 
-  const [showBubble,    setShowBubble]    = useState(false);
-  const [currentSprite, setCurrentSprite] = useState(defaultSprite);
-  const [menuOpen,      setMenuOpen]      = useState(false);
+  const [showBubble,   setShowBubble]   = useState(false);
+  const [currentIcon,  setCurrentIcon]  = useState(headImg);
+  const [menuOpen,     setMenuOpen]     = useState(false);
 
   useEffect(() => {
-    if (!config) { setCurrentSprite(defaultSprite); setShowBubble(false); return; }
-    setCurrentSprite(config.spriteStyle);
+    if (!config) { setCurrentIcon(headImg); setShowBubble(false); return; }
+    setCurrentIcon(config.icon);
     setShowBubble(true);
-    const timer = setTimeout(() => { setShowBubble(false); setCurrentSprite(defaultSprite); }, 5000);
+    const timer = setTimeout(() => { setShowBubble(false); setCurrentIcon(headImg); }, 5000);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -55,13 +42,18 @@ export default function Navbar() {
     <>
       <nav
         style={{ padding: navPadding }}
-        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between bg-transparent transition-all duration-300"
+        className="fixed top-5 left-0 w-full z-50 flex items-center justify-between bg-transparent transition-all duration-300"
       >
         {!isLanding ? (
           <div className="flex items-center gap-3">
             <NavLink to="/" className="no-cursor hover:scale-110 transition-transform shrink-0">
-              <div style={currentSprite} />
+              <img
+                src={currentIcon}
+                alt="Home"
+                style={{ width: '100px', height: '100px', imageRendering: 'pixelated' }}
+              />
             </NavLink>
+
             <AnimatePresence>
               {showBubble && config && (
                 <motion.div
@@ -87,7 +79,7 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
         ) : (
-          <div style={{ width: `${FRAME_W / SCALE}px` }} />
+          <div style={{ width: '48px' }} />
         )}
 
         {/* Desktop nav */}
