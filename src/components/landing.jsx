@@ -13,7 +13,7 @@ const phrases = [
   "Pixel Art Enthusiast.",
 ];
 
-const walkSequence = [walkLeft, walkCenter, walkRight, walkCenter];
+const walkSequence = [walkLeft, walkRight, walkCenter, breatheImg];
 
 export default function App() {
   const [stage, setStage] = useState('walking');
@@ -24,7 +24,8 @@ export default function App() {
 
   useEffect(() => {
     if (stage !== 'walking') return;
-    const id = setInterval(() => setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
+    const id = setInterval(() =>
+      setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
     return () => clearInterval(id);
   }, [stage]);
 
@@ -48,18 +49,18 @@ export default function App() {
 
   return (
     <div
-      className="flex items-center justify-center md:justify-start"
-      style={{ minHeight: '100vh', width: '100vw', padding: '0 6vw', paddingLeft: 'clamp(1.5rem, 14vw, 14vw)', backgroundColor: 'var(--bg-primary)' }}
+      className="flex items-center justify-start"
+      style={{ height: '100vh', width: '100vw', paddingLeft: '5vw', backgroundColor: 'var(--bg-primary)' }}
     >
-      {/* Stack vertically on mobile, row on md+ */}
-      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-0 w-full max-w-2xl md:max-w-none">
+      <div className="flex items-center">
 
-        {/* Character */}
+        {/* Character — bigger, pulled right with negative margin to close gap */}
         <motion.div
           className="shrink-0"
           style={{
-            width: 'clamp(12rem, 35vw, 35.25rem)',
-            height: 'clamp(12rem, 35vw, 35.25rem)',
+            width: '75rem',
+            height: '52rem',
+            marginRight: '-30rem', /* pull text in closer */
           }}
           initial={{ x: '-100vw' }}
           animate={{ x: 0 }}
@@ -67,7 +68,7 @@ export default function App() {
           onAnimationComplete={() => setStage('typing')}
         >
           <img
-            src={stage === 'walking' ? walkSequence[frameIndex] : breatheImg}
+            src={stage === 'walking' ? walkSequence[frameIndex] : walkCenter}
             alt="Pixel Character"
             className={`w-full h-full ${stage === 'typing' ? 'idle-breathe' : ''}`}
             style={{ imageRendering: 'pixelated' }}
@@ -75,7 +76,7 @@ export default function App() {
         </motion.div>
 
         {/* Text */}
-        <div className="flex flex-col items-center md:items-start text-center md:text-left" style={{ whiteSpace: 'normal' }}>
+        <div className="flex flex-col" style={{ whiteSpace: 'normal' }}>
           {stage === 'typing' && (
             <motion.div
               initial={{ opacity: 0, x: 12 }}
@@ -96,7 +97,7 @@ export default function App() {
               <div
                 className="font-mono flex items-center"
                 style={{
-                  fontSize: 'clamp(0.7rem, 2vw, 0.85rem)',
+                  fontSize: '0.85rem',
                   letterSpacing: '0.15em',
                   color: 'var(--text-secondary)',
                   gap: '2px',

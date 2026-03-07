@@ -14,9 +14,21 @@ const CustomCursor = () => {
   useEffect(() => {
     const moveCursor = (e) => {
       const { clientX, clientY, target } = e;
-      
-      // 1. Find hoverable but EXCLUDE the logo (head icon)
-      // We check if it's a link/button but NOT the one with the 'logo-link' class
+
+      // Ignore anything marked no-cursor (e.g. the avatar sprite)
+      if (target.closest('.no-cursor')) {
+        setCursorStyle({
+          width: 20,
+          height: 20,
+          left: clientX,
+          top: clientY,
+          borderRadius: '100%',
+          opacity: 1,
+          isMagnetic: false
+        });
+        return;
+      }
+
       const hoverable = target.closest('a:not(.logo-link), button, .hover-target');
       const isText = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
 
@@ -27,7 +39,7 @@ const CustomCursor = () => {
           height: rect.height + 12,
           left: rect.left + rect.width / 2,
           top: rect.top + rect.height / 2,
-          borderRadius: '4px', // Squared off look for buttons
+          borderRadius: '4px',
           opacity: 0.3,
           isMagnetic: true
         });
@@ -69,7 +81,7 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <div 
+    <div
       ref={cursorRef}
       className={`fixed pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2 
                  transition-all duration-300 ease-out will-change-[width,height,top,left]

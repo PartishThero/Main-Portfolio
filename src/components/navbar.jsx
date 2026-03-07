@@ -22,10 +22,10 @@ const sprite = (col, row, scale = SCALE) => ({
 const defaultSprite = sprite(0, 2);
 
 const pageConfig = {
-  '/about':    { spriteStyle: sprite(3, 2), message: "Ah, curious about me? Good taste! 😎"       },
-  '/skills':   { spriteStyle: sprite(3, 0), message: "Time to get nerdy. Let's gooo. 🔥"          },
-  '/projects': { spriteStyle: sprite(1, 1), message: "These are my babies. Handle with care. 💚"  },
-  '/contact':  { spriteStyle: sprite(0, 0), message: "Let's build something awesome together! 🤝" },
+  '/about':    { spriteStyle: sprite(3, 2), message: "Ah, curious about me? Good taste!"       },
+  '/skills':   { spriteStyle: sprite(3, 0), message: "Time to get nerdy. Let's gooo."          },
+  '/projects': { spriteStyle: sprite(1, 1), message: "These are my babies. Handle with care."  },
+  '/contact':  { spriteStyle: sprite(0, 0), message: "Let's build something awesome together!" },
 };
 
 export default function Navbar() {
@@ -59,7 +59,7 @@ export default function Navbar() {
       >
         {!isLanding ? (
           <div className="flex items-center gap-3">
-            <NavLink to="/" className="hover:scale-110 transition-transform shrink-0">
+            <NavLink to="/" className="no-cursor hover:scale-110 transition-transform shrink-0">
               <div style={currentSprite} />
             </NavLink>
             <AnimatePresence>
@@ -99,7 +99,7 @@ export default function Navbar() {
         </div>
 
         {/* Hamburger */}
-        <button className="md:hidden flex flex-col justify-center gap-[5px] p-2 z-50" onClick={() => setMenuOpen(v => !v)} aria-label="Toggle menu">
+        <button className="md:hidden flex flex-col justify-center gap-1.25 p-2 z-50" onClick={() => setMenuOpen(v => !v)} aria-label="Toggle menu">
           {[0,1,2].map(i => (
             <span key={i} style={{
               display: 'block', width: '22px', height: '2px', backgroundColor: 'var(--accent-main)', transition: 'transform 0.2s, opacity 0.2s',
