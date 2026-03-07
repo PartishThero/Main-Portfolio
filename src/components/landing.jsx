@@ -9,8 +9,8 @@ import './landing.css';
 
 const phrases = [
   "I build digital experiences.",
-  "Full-Stack Developer.",
-  "Pixel Art Enthusiast.",
+  "FrontEnd Developer.",
+  "Full Stack Developer.",
 ];
 
 const walkSequence = [walkLeft, walkRight, walkCenter, breatheImg];
@@ -50,7 +50,7 @@ export default function App() {
   return (
     <div
       className="flex items-center justify-start"
-      style={{ height: '100vh', width: '100vw', paddingLeft: '5vw', backgroundColor: 'var(--bg-primary)' }}
+      style={{ height: '100vh', width: '100vw', paddingLeft: '7vw', backgroundColor: 'var(--bg-primary)' }}
     >
       <div className="flex items-center">
 
@@ -58,9 +58,10 @@ export default function App() {
         <motion.div
           className="shrink-0"
           style={{
-            width: '75rem',
-            height: '52rem',
-            marginRight: '-30rem', /* pull text in closer */
+            width: '12rem',
+            height: '24rem',
+            marginRight: '5rem',
+            marginLeft: '30rem' /* pull text in closer */
           }}
           initial={{ x: '-100vw' }}
           animate={{ x: 0 }}
