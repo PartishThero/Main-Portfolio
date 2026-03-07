@@ -1,0 +1,37 @@
+/* Boldonse font */
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+
+/* Character idle animation */
+@keyframes breathe-anim {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+.idle-breathe {
+  animation: breathe-anim 2s ease-in-out infinite alternate;
+}
+
+/* Typewriter cursor */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 0.8s infinite;
+  display: inline-block;
+  transform: scaleX(0.35);
+  transform-origin: left;
+}
+
+/* Name heading */
+.name-big {
+  font-family: "Boldonse", system-ui;
+  font-size: 4rem;
+  line-height: 0.88;
+  white-space: normal;
+  max-width: 5ch;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.highlight {
+  color: var(--accent-main);
+  text-shadow: var(--accent-glow);
+}
