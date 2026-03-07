@@ -5,7 +5,7 @@ import Landing from './components/landing.jsx';
 import About from './components/about.jsx';
 import Projects from './components/projects.jsx';
 import Contact from './components/contacts.jsx';
-import CustomCursor from './components/CustomCursor.jsx'; // Import the cursor
+import CustomCursor from './components/customcursor.jsx'; // Import the cursor
 import Skills from './components/skills.jsx';
 import Footer from './components/footer.jsx';
 
