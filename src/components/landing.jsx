@@ -22,20 +22,16 @@ export default function App() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
 
-  /* ── Walk animation frames ── */
   useEffect(() => {
     if (stage !== 'walking') return;
-    const id = setInterval(() =>
-      setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
+    const id = setInterval(() => setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
     return () => clearInterval(id);
   }, [stage]);
 
-  /* ── Typewriter ── */
   useEffect(() => {
     if (stage !== 'typing') return;
     const phrase = phrases[loop % phrases.length];
     const delay = isDeleting ? 50 : 100;
-
     const id = setTimeout(() => {
       if (!isDeleting) {
         const next = phrase.substring(0, text.length + 1);
@@ -47,23 +43,24 @@ export default function App() {
         if (next === '') { setIsDeleting(false); setLoop(l => l + 1); }
       }
     }, delay);
-
     return () => clearTimeout(id);
   }, [text, isDeleting, loop, stage]);
 
   return (
-    /* portfolio-container */
     <div
-      className="flex items-center justify-start"
-      style={{ height: '100vh', width: '100vw', paddingLeft: '14vw', backgroundColor: 'var(--bg-primary)' }}
+      className="flex items-center justify-center md:justify-start"
+      style={{ minHeight: '100vh', width: '100vw', padding: '0 6vw', paddingLeft: 'clamp(1.5rem, 14vw, 14vw)', backgroundColor: 'var(--bg-primary)' }}
     >
-      {/* layout-wrapper */}
-      <div className="flex items-center" style={{ gap: '-50rem' }}>
+      {/* Stack vertically on mobile, row on md+ */}
+      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-0 w-full max-w-2xl md:max-w-none">
 
-        {/* character-box: 35.25rem × 35.25rem */}
+        {/* Character */}
         <motion.div
           className="shrink-0"
-          style={{ width: '35.25rem', height: '35.25rem' }}
+          style={{
+            width: 'clamp(12rem, 35vw, 35.25rem)',
+            height: 'clamp(12rem, 35vw, 35.25rem)',
+          }}
           initial={{ x: '-100vw' }}
           animate={{ x: 0 }}
           transition={{ duration: 3, ease: 'linear' }}
@@ -77,15 +74,14 @@ export default function App() {
           />
         </motion.div>
 
-        {/* text-side */}
-        <div className="flex flex-col" style={{ whiteSpace: 'normal' }}>
+        {/* Text */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left" style={{ whiteSpace: 'normal' }}>
           {stage === 'typing' && (
             <motion.div
               initial={{ opacity: 0, x: 12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4 }}
             >
-              {/* "Hello! I am" */}
               <p
                 className="font-mono text-base leading-none"
                 style={{ color: 'var(--accent-secondary)', marginBottom: '1.5rem' }}
@@ -93,16 +89,14 @@ export default function App() {
                 Hello! I am
               </p>
 
-              {/* Big name */}
               <h1 className="name-big">
                 <span className="highlight">Partish.</span>
               </h1>
 
-              {/* Typewriter box */}
               <div
                 className="font-mono flex items-center"
                 style={{
-                  fontSize: '0.85rem',
+                  fontSize: 'clamp(0.7rem, 2vw, 0.85rem)',
                   letterSpacing: '0.15em',
                   color: 'var(--text-secondary)',
                   gap: '2px',

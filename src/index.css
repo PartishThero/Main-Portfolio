@@ -16,11 +16,11 @@
   padding: 0;
   box-sizing: border-box;
   cursor: none !important;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
 }
 
 html, body {
@@ -47,6 +47,11 @@ input, textarea {
 }
 
 .content-grid {
-  padding-left: 14vw;
-  padding-right: 14vw;
+  padding-left: clamp(1.25rem, 14vw, 14vw);
+  padding-right: clamp(1.25rem, 14vw, 14vw);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto !important; }
 }
