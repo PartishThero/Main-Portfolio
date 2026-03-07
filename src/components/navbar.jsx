@@ -19,7 +19,7 @@ const sprite = (col, row, scale = SCALE) => ({
   flexShrink:         0,
 });
 
-const defaultSprite = sprite(0, 2);
+const defaultSprite = sprite(3, 1);
 
 const pageConfig = {
   '/about':    { spriteStyle: sprite(3, 2), message: "Ah, curious about me? Good taste!"       },
