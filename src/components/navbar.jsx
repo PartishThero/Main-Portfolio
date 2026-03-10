@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import headImg      from '../assets/Sleepy pixel.png';
-import aboutIcon    from '../assets/question pixel.png';
+import aboutIcon    from '../assets/Question pixel.png';
 import skillsIcon   from '../assets/Crazy pixel.png';
 import projectsIcon from '../assets/heart pixel.png';
 import contactIcon  from '../assets/Naughty Pixel.png';
