@@ -59,7 +59,7 @@ const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className={`fixed pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2
+      className={`fixed pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2
                   transition-all duration-300 ease-out will-change-[width,height,top,left]
                   ${isClicked ? 'scale-75' : 'scale-100'}`}
       style={{

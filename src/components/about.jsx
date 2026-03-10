@@ -35,7 +35,7 @@ export default function About() {
           </motion.div>
 
           {/* Text */}
-          <div className="!p-8 flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left" >
+          <div className="p-8! flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left" >
 
             <motion.p {...fadeUp(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-(--accent-secondary)">
               / about me
