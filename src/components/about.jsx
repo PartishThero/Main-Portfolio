@@ -11,10 +11,10 @@ const fadeUp = (delay = 0) => ({
 export default function About() {
   return (
     <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) flex flex-col">
-      <div className="flex-1 flex items-center justify-center px-6 sm:px-12 md:px-24 pt-28 pb-16">
+      <div className="flex-1 flex items-center justify-center px-10 sm:px-12 md:px-24 pt-28 pb-16">
 
         {/* Stack on mobile, row on md+ */}
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl p-2">
 
           {/* Avatar */}
           <motion.div {...fadeUp(0.1)} className="shrink-0 flex flex-col items-center gap-3">
@@ -35,7 +35,7 @@ export default function About() {
           </motion.div>
 
           {/* Text */}
-          <div className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left">
+          <div className="!p-8 flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left" >
 
             <motion.p {...fadeUp(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-(--accent-secondary)">
               / about me

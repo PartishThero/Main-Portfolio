@@ -25,11 +25,10 @@
 
 html, body {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden; /* scroll handled by #main-scroll */
 }
 
 p, span, h1, h2, h3, h4, h5, h6, li, code, a, button, input, textarea {
@@ -51,7 +50,12 @@ input, textarea {
   padding-right: clamp(1.25rem, 14vw, 14vw);
 }
 
-/* Hide custom cursor on touch devices */
+/* ── On touch devices: restore default cursor, hide custom one ── */
 @media (hover: none) and (pointer: coarse) {
-  * { cursor: auto !important; }
+  * {
+    cursor: auto !important;
+  }
+  p, span, h1, h2, h3, h4, h5, h6, li, code, a, button, input, textarea {
+    cursor: auto !important;
+  }
 }
