@@ -1,8 +1,8 @@
 import React from 'react';
 
 const socials = [
-  { label: 'GitHub',   href: 'https://github.com/yourhandle' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/yourhandle' },
+  { label: 'GitHub',   href: 'https://github.com/PartishThero' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/partish-palkritwar-b74a74376/' },
 ];
 
 export default function Footer() {

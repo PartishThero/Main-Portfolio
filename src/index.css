@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #141917;
-  --bg-surface: #1c2420;
-  --text-primary: #e8efe9;
-  --text-secondary: #9caea4;
-  --accent-main: #6fa38a;
-  --accent-secondary: #6fa38a;
-  --accent-tertiary: #6fa38a;
+  --bg-primary: #d8c5ae;
+  --bg-surface: #c3ad94;
+  --text-primary: #2b221b;
+  --text-secondary: #635141;
+  --accent-main: #7a4a31;
+  --accent-secondary: #7a4a31;
+  --accent-tertiary: #7a4a31;
   --accent-glow: none;
 }
 
@@ -28,7 +28,7 @@ html, body {
   height: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  overflow: hidden; /* scroll handled by #main-scroll */
+  overflow: hidden;
 }
 
 p, span, h1, h2, h3, h4, h5, h6, li, code, a, button, input, textarea {

@@ -28,12 +28,11 @@ const CustomCursor = () => {
       const isText    = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
 
       if (hoverable) {
-        const rect = hoverable.getBoundingClientRect();
-        setCursorStyle({
-          width: rect.width + 12, height: rect.height + 12,
-          left: rect.left + rect.width / 2, top: rect.top + rect.height / 2,
-          borderRadius: '4px', opacity: 0.3, isMagnetic: true,
-        });
+  setCursorStyle({
+    width: 48, height: 48,
+    left: clientX, top: clientY,
+    borderRadius: '100%', opacity: 0.4, isMagnetic: false,
+  });
       } else if (isText) {
         setCursorStyle({ width: 2, height: 24, left: clientX, top: clientY, borderRadius: '0px', opacity: 1, isMagnetic: false });
       } else {
@@ -70,7 +69,7 @@ const CustomCursor = () => {
         borderRadius: cursorStyle.borderRadius,
         opacity:      cursorStyle.opacity,
         backgroundColor: 'var(--accent-main)',
-        mixBlendMode: 'difference',
+        mixBlendMode: 'normal',
         boxShadow:    cursorStyle.isMagnetic ? 'none' : '0 0 10px var(--accent-main)',
       }}
     />
