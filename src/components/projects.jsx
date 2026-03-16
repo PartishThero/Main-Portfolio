@@ -19,6 +19,8 @@ const filterLeave = (e,isActive) => {if(!isActive){e.currentTarget.style.transfo
 function Projects() {
   const [active,setActive] = useState('All');
   const filtered = projects.filter(p => active === 'All' ? true : p.category === active.toLowerCase());
+
+
   return (
     <div className="min-h-screen flex flex-col" style={containerStyle}>
 
@@ -45,8 +47,10 @@ function Projects() {
 
       </motion.div>
 
+
       {/* Grid or Empty State */}
       <AnimatePresence mode="wait">
+        
         {filtered.length === 0 ? (
           <motion.div key="empty" {...fadeUp()} exit={{opacity:0,y:16}} transition={{duration:0.3}} className="flex flex-col items-center justify-center gap-6" style={{paddingTop:'4rem'}}>
 

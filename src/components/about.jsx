@@ -30,7 +30,7 @@ export default function About() {
               />
             </div>
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-(--text-secondary)">
-              Partish · Full-Stack Dev
+              Partish · Developer
             </p>
           </motion.div>
 
@@ -55,22 +55,18 @@ export default function About() {
             <motion.div {...fadeUp(0.2)} className="w-12 h-0.5 bg-(--accent-main)" />
 
             <motion.p {...fadeUp(0.25)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
-              I'm a full-stack developer who cares about building things that feel
-              great to use. I like clean code, thoughtful design, and projects that
-              solve real problems.
+              I’m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I’m learning Python and web development while exploring areas like artificial intelligence and game development.
             </motion.p>
 
             <motion.p {...fadeUp(0.3)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
-              Outside of work I spend time on pixel art, tinkering with side
-              projects, and drinking an irresponsible amount of coffee.
+              I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
             </motion.p>
 
             {/* Stats */}
             <motion.div {...fadeUp(0.4)} className="flex gap-8 md:gap-10 pt-2">
               {[
-                { value: '2+',  label: 'Years exp.'  },
-                { value: '10+', label: 'Projects'    },
-                { value: '∞',   label: 'Coffee cups' },
+                { value: '0+',  label: 'Years exp.'},
+                { value: '10+', label: 'Projects'},
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col gap-1 items-center md:items-start">
                   <span
