@@ -23,6 +23,15 @@ export default function Landing() {
   
   const isMobile = useIsMobile();
 
+  /* ── Preload images to prevent sticking/lagging ── */
+  useEffect(() => {
+    const imagesToPreload = [walkLeft, walkCenter, walkRight, restbopImg];
+    imagesToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   /* ── Walk frames ── */
   useEffect(() => {
     if (stage !== 'walking') return;
