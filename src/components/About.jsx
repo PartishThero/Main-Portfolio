@@ -1,12 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import headImg from '../assets/head.png';
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, delay },
-});
+import SectionHeader from './common/SectionHeader';
+import { fadeUp } from '../constants/animations';
 
 export default function About() {
   return (
@@ -17,7 +13,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl p-2">
 
           {/* Avatar */}
-          <motion.div {...fadeUp(0.1)} className="shrink-0 flex flex-col items-center gap-3">
+          <motion.div {...fadeUp(0.1, 24)} className="shrink-0 flex flex-col items-center gap-3">
             <div
               className="w-40 h-40 md:w-52 md:h-52 bg-(--bg-surface) border-2 border-(--accent-main) flex items-center justify-center p-4"
               style={{ boxShadow: '6px 6px 0px var(--bg-surface), 6px 6px 0px 2px var(--accent-main)' }}
@@ -37,33 +33,18 @@ export default function About() {
           {/* Text */}
           <div className="p-8! flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left" >
 
-            <motion.p {...fadeUp(0)} className="font-mono text-xs uppercase tracking-[0.2em] text-(--accent-secondary)">
-              / about me
+            <SectionHeader label="about me" title="Hey, I'm" highlightWord="Partish." />
+
+            <motion.p {...fadeUp(0.25, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+              I&apos;m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I&apos;m learning Python and web development while exploring areas like artificial intelligence and game development.
             </motion.p>
 
-            <motion.h2
-              {...fadeUp(0.15)}
-              className="leading-none"
-              style={{ fontFamily: '"Boldonse", system-ui', fontSize: 'clamp(2.5rem, 6vw, 3.75rem)' }}
-            >
-              Hey, I'm{' '}
-              <span className="text-(--accent-main)" style={{ textShadow: 'var(--accent-glow)' }}>
-                Partish.
-              </span>
-            </motion.h2>
-
-            <motion.div {...fadeUp(0.2)} className="w-12 h-0.5 bg-(--accent-main)" />
-
-            <motion.p {...fadeUp(0.25)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
-              I’m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I’m learning Python and web development while exploring areas like artificial intelligence and game development.
-            </motion.p>
-
-            <motion.p {...fadeUp(0.3)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+            <motion.p {...fadeUp(0.3, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
               I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
             </motion.p>
 
             {/* Stats */}
-            <motion.div {...fadeUp(0.4)} className="flex gap-8 md:gap-10 pt-2">
+            <motion.div {...fadeUp(0.4, 20)} className="flex gap-8 md:gap-10 pt-2">
               {[
                 { value: '0+',  label: 'Years exp.'},
                 { value: '10+', label: 'Projects'},

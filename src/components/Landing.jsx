@@ -1,36 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-import walkLeft   from '../assets/walk-left.png';
+import walkLeft from '../assets/walk-left.png';
 import walkCenter from '../assets/walk-center.png';
-import walkRight  from '../assets/walk-right.png';
-import breatheImg from '../assets/breathe.png';
+import walkRight from '../assets/walk-right.png';
 import restbopImg from '../assets/restbop.png';
-import './landing.css';
+import '../styles/landing.css';
 
-const phrases = [
-  "I build digital experiences.",
-  "FrontEnd Developer.",
-  "Full Stack Developer.",
-];
+import useIsMobile from '../hooks/useIsMobile';
+import { phrases } from '../constants/portfolioData';
 
 const walkSequence = [walkLeft, walkRight, walkCenter, walkRight];
 const idleSequence = [walkCenter, restbopImg];
 
 export default function Landing() {
-  const [stage,      setStage]      = useState('walking');
+  const [stage, setStage] = useState('walking');
   const [frameIndex, setFrameIndex] = useState(0);
-  const [idleIndex,  setIdleIndex]  = useState(0);
-  const [text,       setText]       = useState('');
+  const [idleIndex, setIdleIndex] = useState(0);
+  const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [loop,       setLoop]       = useState(0);
-  const [isMobile,   setIsMobile]   = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+  const [loop, setLoop] = useState(0);
+  
+  const isMobile = useIsMobile();
 
   /* ── Walk frames ── */
   useEffect(() => {
@@ -52,7 +43,7 @@ export default function Landing() {
   useEffect(() => {
     if (stage !== 'typing') return;
     const phrase = phrases[loop % phrases.length];
-    const delay  = isDeleting ? 50 : 100;
+    const delay = isDeleting ? 50 : 100;
     const id = setTimeout(() => {
       if (!isDeleting) {
         const next = phrase.substring(0, text.length + 1);

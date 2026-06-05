@@ -1,15 +1,20 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 const isTouchDevice = () =>
-  window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
 const CustomCursor = () => {
-  const cursorRef   = useRef(null);
-  const isTouch     = isTouchDevice();
+  const cursorRef = useRef(null);
+  const isTouch = isTouchDevice();
 
   const [cursorStyle, setCursorStyle] = useState({
-    width: 20, height: 20, borderRadius: '100%', opacity: 1, isMagnetic: false,
-    left: -100, top: -100,
+    width: 20,
+    height: 20,
+    borderRadius: '100%',
+    opacity: 1,
+    isMagnetic: false,
+    left: -100,
+    top: -100,
   });
   const [isClicked, setIsClicked] = useState(false);
 
@@ -19,20 +24,26 @@ const CustomCursor = () => {
     const moveCursor = (e) => {
       const { clientX, clientY, target } = e;
 
+      if (!target) return;
+
       if (target.closest('.no-cursor')) {
         setCursorStyle({ width: 20, height: 20, left: clientX, top: clientY, borderRadius: '100%', opacity: 1, isMagnetic: false });
         return;
       }
 
       const hoverable = target.closest('a:not(.logo-link), button, .hover-target');
-      const isText    = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
+      const isText = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
 
       if (hoverable) {
-  setCursorStyle({
-    width: 48, height: 48,
-    left: clientX, top: clientY,
-    borderRadius: '100%', opacity: 0.4, isMagnetic: false,
-  });
+        setCursorStyle({
+          width: 48,
+          height: 48,
+          left: clientX,
+          top: clientY,
+          borderRadius: '100%',
+          opacity: 0.4,
+          isMagnetic: false,
+        });
       } else if (isText) {
         setCursorStyle({ width: 2, height: 24, left: clientX, top: clientY, borderRadius: '0px', opacity: 1, isMagnetic: false });
       } else {
@@ -41,11 +52,11 @@ const CustomCursor = () => {
     };
 
     const handleMouseDown = () => setIsClicked(true);
-    const handleMouseUp   = () => setIsClicked(false);
+    const handleMouseUp = () => setIsClicked(false);
 
     window.addEventListener('mousemove', moveCursor);
     window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup',   handleMouseUp);
+    window.addEventListener('mouseup', handleMouseUp);
     return () => {
       window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mousedown', handleMouseDown);
@@ -62,15 +73,15 @@ const CustomCursor = () => {
                   transition-all duration-300 ease-out will-change-[width,height,top,left]
                   ${isClicked ? 'scale-75' : 'scale-100'}`}
       style={{
-        left:         cursorStyle.left,
-        top:          cursorStyle.top,
-        width:        cursorStyle.width,
-        height:       cursorStyle.height,
+        left: cursorStyle.left,
+        top: cursorStyle.top,
+        width: cursorStyle.width,
+        height: cursorStyle.height,
         borderRadius: cursorStyle.borderRadius,
-        opacity:      cursorStyle.opacity,
+        opacity: cursorStyle.opacity,
         backgroundColor: 'var(--accent-main)',
         mixBlendMode: 'normal',
-        boxShadow:    cursorStyle.isMagnetic ? 'none' : '0 0 10px var(--accent-main)',
+        boxShadow: cursorStyle.isMagnetic ? 'none' : '0 0 10px var(--accent-main)',
       }}
     />
   );

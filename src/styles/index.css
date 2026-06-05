@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #d8c5ae;
-  --bg-surface: #c3ad94;
-  --text-primary: #2b221b;
-  --text-secondary: #635141;
-  --accent-main: #7a4a31;
-  --accent-secondary: #7a4a31;
-  --accent-tertiary: #7a4a31;
+  --bg-primary: #0f1412;
+  --bg-surface: #171d1a;
+  --text-primary: #e6efe9;
+  --text-secondary: #8ea398;
+  --accent-main: #4f8c73;
+  --accent-secondary: #4f8c73;
+  --accent-tertiary: #4f8c73;
   --accent-glow: none;
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -48,6 +47,14 @@ input, textarea {
 .content-grid {
   padding-left: clamp(1.25rem, 14vw, 14vw);
   padding-right: clamp(1.25rem, 14vw, 14vw);
+}
+
+body {
+  background-image: url('/src/assets/bavkground.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 /* ── On touch devices: restore default cursor, hide custom one ── */

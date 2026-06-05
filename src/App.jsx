@@ -1,12 +1,12 @@
 import React from 'react';
-import Navbar from './components/navbar.jsx';
-import Landing from './components/landing.jsx';
-import About from './components/about.jsx';
-import Skills from './components/skills.jsx';
-import Projects from './components/projects.jsx';
-import Contact from './components/contacts.jsx';
-import Footer from './components/footer.jsx';
-import CustomCursor from './components/customcursor.jsx';
+import Navbar from './components/Navbar.jsx';
+import Landing from './components/Landing.jsx';
+import About from './components/About.jsx';
+import Skills from './components/Skills.jsx';
+import Projects from './components/Projects.jsx';
+import Contact from './components/Contact.jsx';
+import Footer from './components/Footer.jsx';
+import CustomCursor from './components/CustomCursor.jsx';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       <main
         style={{
           height: '100vh',
+          width: '100vw',
           overflowY: 'scroll',
           scrollSnapType: 'y mandatory',
           scrollBehavior: 'smooth',

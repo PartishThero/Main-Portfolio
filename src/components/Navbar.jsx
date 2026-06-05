@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/set-state-in-effect */
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import headImg      from '../assets/Sleepy pixel.png';
-import aboutIcon    from '../assets/Question Pixel.png';
-import skillsIcon   from '../assets/Crazy Pixel.png';
-import projectsIcon from '../assets/heart pixel.png';
-import contactIcon  from '../assets/Naughty Pixel.png';
-
-const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-
-const pageConfig = {
-  about:    { icon: aboutIcon,    message: "Ah, curious about me? Good taste!"        },
-  skills:   { icon: skillsIcon,   message: "Time to get nerdy. Let's gooo."           },
-  projects: { icon: projectsIcon, message: "These are my babies. Handle with care."   },
-  contact:  { icon: contactIcon,  message: "Let's build something awesome together!"  },
-};
+import headImg from '../assets/Sleepy pixel.png';
+import useIsMobile from '../hooks/useIsMobile';
+import { sections, pageConfig, navLinks } from '../constants/portfolioData';
 
 const scrollTo = (id) => {
   const el = document.getElementById(id);
@@ -23,12 +13,13 @@ const scrollTo = (id) => {
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
-  const [showBubble,    setShowBubble]    = useState(false);
-  const [currentIcon,   setCurrentIcon]   = useState(headImg);
-  const [bubbleMsg,     setBubbleMsg]     = useState('');
-  const [bubbleTimer,   setBubbleTimer]   = useState(null);
+  const [showBubble, setShowBubble] = useState(false);
+  const [currentIcon, setCurrentIcon] = useState(headImg);
+  const [bubbleMsg, setBubbleMsg] = useState('');
+  const bubbleTimerRef = useRef(null);
 
   const isLanding = activeSection === 'home';
+  const isMobile = useIsMobile();
 
   /* ── Intersection Observer — detects which section is visible ── */
   useEffect(() => {
@@ -55,7 +46,9 @@ export default function Navbar() {
   useEffect(() => {
     const config = pageConfig[activeSection];
 
-    if (bubbleTimer) clearTimeout(bubbleTimer);
+    if (bubbleTimerRef.current) {
+      clearTimeout(bubbleTimerRef.current);
+    }
 
     if (!config) {
       setCurrentIcon(headImg);
@@ -67,29 +60,17 @@ export default function Navbar() {
     setBubbleMsg(config.message);
     setShowBubble(true);
 
-    const t = setTimeout(() => {
+    bubbleTimerRef.current = setTimeout(() => {
       setShowBubble(false);
       setCurrentIcon(headImg);
     }, 5000);
 
-    setBubbleTimer(t);
-    return () => clearTimeout(t);
+    return () => {
+      if (bubbleTimerRef.current) {
+        clearTimeout(bubbleTimerRef.current);
+      }
+    };
   }, [activeSection]);
-
-  const navLinks = [
-    { id: 'about',    label: 'About'    },
-    { id: 'skills',   label: 'Skills'   },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact',  label: 'Contact'  },
-  ];
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
 
   if (isMobile) return null;
 
@@ -97,10 +78,10 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-50 flex items-center justify-between bg-transparent transition-all duration-300"
       style={{ 
-  padding: isLanding 
-    ? 'clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 3rem)' 
-    : '0 clamp(1.5rem, 3vw, 3rem)' 
-}}
+        padding: isLanding 
+          ? 'clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 3rem)' 
+          : '0 clamp(1.5rem, 3vw, 3rem)' 
+      }}
     >
       {/* LEFT: avatar + bubble */}
       {!isLanding ? (
@@ -120,19 +101,19 @@ export default function Navbar() {
             {showBubble && (
               <motion.div
                 initial={{ opacity: 0, x: -8, scale: 0.95 }}
-                animate={{ opacity: 1, x: 0,  scale: 1    }}
-                exit={{    opacity: 0, x: -8, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -8, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
                 className="relative font-mono text-xs"
                 style={{
                   backgroundColor: 'var(--bg-surface)',
-                  border:          '1.5px solid var(--accent-main)',
-                  borderRadius:    '0.5rem',
-                  padding:         '0.5rem 0.9rem',
-                  color:           'var(--text-primary)',
-                  whiteSpace:      'nowrap',
-                  letterSpacing:   '0.04em',
-                  boxShadow:       '3px 3px 0px var(--accent-main)',
+                  border: '1.5px solid var(--accent-main)',
+                  borderRadius: '0.5rem',
+                  padding: '0.5rem 0.9rem',
+                  color: 'var(--text-primary)',
+                  whiteSpace: 'nowrap',
+                  letterSpacing: '0.04em',
+                  boxShadow: '3px 3px 0px var(--accent-main)',
                 }}
               >
                 <span style={{
