@@ -27,7 +27,7 @@ export const navLinks = [
 
 export const projects = [
   {
-    id: 2,
+    id: 1,
     title: 'Driver Drowsiness Detector',
     desc: 'The project aims to provide a simple solution by monitoring the drivers eyes and triggering an alert if signs of drowsiness are detected.',
     tech: ['Python'],
