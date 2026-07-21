@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./landing.css";
 
 :root {
   --bg-primary: #0f1412;
@@ -6,6 +7,7 @@
   --text-primary: #e6efe9;
   --text-secondary: #8ea398;
   --accent-main: #4f8c73;
+  /* --accent-secondary and --accent-tertiary intentionally alias --accent-main for now */
   --accent-secondary: #4f8c73;
   --accent-tertiary: #4f8c73;
   --accent-glow: none;
@@ -53,12 +55,17 @@ body {
   background-image: url('/src/assets/bavkground.jpg');
   background-size: cover;
   background-position: center;
+  /* fixed attachment disables GPU compositing on iOS/Android — override on touch screens */
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
-/* ── On touch devices: restore default cursor, hide custom one ── */
+/* ── On touch devices: restore scroll-linked bg (no fixed attachment) + default cursor ── */
 @media (hover: none) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+  }
+
   * {
     cursor: auto !important;
   }

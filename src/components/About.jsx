@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import headImg from '../assets/head.png';
+import headImg from '../assets/head.webp';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
 

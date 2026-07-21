@@ -1,7 +1,7 @@
-import aboutIcon from '../assets/Question Pixel.png';
-import skillsIcon from '../assets/Crazy Pixel.png';
-import projectsIcon from '../assets/heart pixel.png';
-import contactIcon from '../assets/Naughty Pixel.png';
+import aboutIcon from '../assets/Question Pixel.webp';
+import skillsIcon from '../assets/Crazy Pixel.webp';
+import projectsIcon from '../assets/heart pixel.webp';
+import contactIcon from '../assets/Naughty Pixel.webp';
 
 export const phrases = [
   "I build digital experiences.",
@@ -63,7 +63,7 @@ export const skills = {
 
 export const contactInfo = {
   email: 'partish.palkritwar07@gmail.com',
-  location: 'Banglore, India',
+  location: 'Bangalore, India',
   web3formsKey: 'ebef00c6-caeb-4f1d-8265-4ec3b0f4e5d4',
   socials: [
     { label: 'GitHub', href: 'https://github.com/PartishThero' },

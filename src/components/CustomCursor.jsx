@@ -4,8 +4,8 @@ const isTouchDevice = () =>
   typeof window !== 'undefined' && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
   const isTouch = isTouchDevice();
+  const rafRef = useRef(null);
 
   const [cursorStyle, setCursorStyle] = useState({
     width: 20,
@@ -26,29 +26,33 @@ const CustomCursor = () => {
 
       if (!target) return;
 
-      if (target.closest('.no-cursor')) {
-        setCursorStyle({ width: 20, height: 20, left: clientX, top: clientY, borderRadius: '100%', opacity: 1, isMagnetic: false });
-        return;
-      }
+      // Throttle to one update per animation frame to avoid excessive re-renders
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (target.closest('.no-cursor')) {
+          setCursorStyle({ width: 20, height: 20, left: clientX, top: clientY, borderRadius: '100%', opacity: 1, isMagnetic: false });
+          return;
+        }
 
-      const hoverable = target.closest('a:not(.logo-link), button, .hover-target');
-      const isText = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
+        const hoverable = target.closest('a:not(.logo-link), button, .hover-target');
+        const isText = target.closest('p, span, h1, h2, h3, h4, h5, h6, li, code');
 
-      if (hoverable) {
-        setCursorStyle({
-          width: 48,
-          height: 48,
-          left: clientX,
-          top: clientY,
-          borderRadius: '100%',
-          opacity: 0.4,
-          isMagnetic: false,
-        });
-      } else if (isText) {
-        setCursorStyle({ width: 2, height: 24, left: clientX, top: clientY, borderRadius: '0px', opacity: 1, isMagnetic: false });
-      } else {
-        setCursorStyle({ width: 20, height: 20, left: clientX, top: clientY, borderRadius: '100%', opacity: 1, isMagnetic: false });
-      }
+        if (hoverable) {
+          setCursorStyle({
+            width: 48,
+            height: 48,
+            left: clientX,
+            top: clientY,
+            borderRadius: '100%',
+            opacity: 0.4,
+            isMagnetic: false,
+          });
+        } else if (isText) {
+          setCursorStyle({ width: 2, height: 24, left: clientX, top: clientY, borderRadius: '0px', opacity: 1, isMagnetic: false });
+        } else {
+          setCursorStyle({ width: 20, height: 20, left: clientX, top: clientY, borderRadius: '100%', opacity: 1, isMagnetic: false });
+        }
+      });
     };
 
     const handleMouseDown = () => setIsClicked(true);
@@ -58,6 +62,7 @@ const CustomCursor = () => {
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('mousemove', moveCursor);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup',   handleMouseUp);
@@ -68,7 +73,6 @@ const CustomCursor = () => {
 
   return (
     <div
-      ref={cursorRef}
       className={`fixed pointer-events-none z-9999 -translate-x-1/2 -translate-y-1/2
                   transition-all duration-300 ease-out will-change-[width,height,top,left]
                   ${isClicked ? 'scale-75' : 'scale-100'}`}

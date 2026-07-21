@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import headImg from '../assets/Sleepy pixel.png';
+import headImg from '../assets/Sleepy pixel.webp';
 import useIsMobile from '../hooks/useIsMobile';
 import { sections, pageConfig, navLinks } from '../constants/portfolioData';
 
@@ -51,6 +50,7 @@ export default function Navbar() {
     }
 
     if (!config) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentIcon(headImg);
       setShowBubble(false);
       return;

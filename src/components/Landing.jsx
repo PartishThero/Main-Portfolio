@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-import walkLeft from '../assets/walk-left.png';
-import walkCenter from '../assets/walk-center.png';
-import walkRight from '../assets/walk-right.png';
-import restbopImg from '../assets/restbop.png';
-import '../styles/landing.css';
+import walkLeft from '../assets/walk-left.webp';
+import walkCenter from '../assets/walk-center.webp';
+import walkRight from '../assets/walk-right.webp';
+import restbopImg from '../assets/restbop.webp';
 
 import useIsMobile from '../hooks/useIsMobile';
 import { phrases } from '../constants/portfolioData';
@@ -22,15 +21,6 @@ export default function Landing() {
   const [loop, setLoop] = useState(0);
   
   const isMobile = useIsMobile();
-
-  /* ── Preload images to prevent sticking/lagging ── */
-  useEffect(() => {
-    const imagesToPreload = [walkLeft, walkCenter, walkRight, restbopImg];
-    imagesToPreload.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
 
   /* ── Walk frames ── */
   useEffect(() => {
@@ -96,7 +86,7 @@ export default function Landing() {
           <img
             src={stage === 'walking' ? walkSequence[frameIndex] : idleSequence[idleIndex]}
             alt="Pixel Character"
-            className={`w-full h-full ${stage === 'typing' ? 'idle-breathe' : ''}`}
+            className="w-full h-full"
             style={{ imageRendering: 'pixelated' }}
           />
         </motion.div>
@@ -162,7 +152,7 @@ export default function Landing() {
           <img
             src={stage === 'walking' ? walkSequence[frameIndex] : idleSequence[idleIndex]}
             alt="Pixel Character"
-            className={`w-full h-full ${stage === 'typing' ? 'idle-breathe' : ''}`}
+            className="w-full h-full"
             style={{ imageRendering: 'pixelated' }}
           />
         </motion.div>

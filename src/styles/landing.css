@@ -1,11 +1,5 @@
-/* Boldonse font */
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+/* NOTE: Boldonse is already loaded in index.html — no duplicate import needed */
 
-/* Character idle animation */
-@keyframes breathe-anim {
-  from { transform: scale(1); }
-  to   { transform: scale(1.05); }
-}
 /* Typewriter cursor */
 @keyframes blink {
   50% { opacity: 0; }
