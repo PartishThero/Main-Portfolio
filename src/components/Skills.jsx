@@ -2,27 +2,29 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
-import { skills } from '../constants/portfolioData';
+import { skills, pageConfig } from '../constants/portfolioData';
 
 export default function Skills() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center py-20">
-      <div className="section-container flex flex-col gap-10">
+    <div className="section-shell">
+      <div className="section-container flex flex-col gap-8">
         <SectionHeader
           label="skills"
-          title="Technical toolkit."
-          subtitle="A text-first inventory of tools and technologies used across my open-source projects."
+          title="What I work with."
+          mascotIcon={pageConfig.skills.icon}
+          speechBubble={pageConfig.skills.message}
         />
 
-        {/* Grouped text-first list */}
+        {/* Grouped inventory list */}
         <div className="flex flex-col border-t border-(--border-subtle)">
           {Object.entries(skills).map(([category, items], idx) => (
             <motion.div
               key={category}
               {...fadeUp(0.1 + idx * 0.08, 16)}
-              className="py-6 border-b border-(--border-subtle) flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12"
+              className="py-5 sm:py-6 border-b border-(--border-subtle) flex flex-col md:flex-row md:items-baseline gap-3 md:gap-12"
             >
-              <div className="w-48 shrink-0">
+              <div className="w-52 shrink-0 flex items-center gap-2">
+                <span className="font-pixel text-xs text-(--accent-amber)">◆</span>
                 <span className="font-mono text-xs uppercase tracking-wider text-(--text-muted)">
                   {category}
                 </span>

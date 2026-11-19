@@ -94,6 +94,17 @@ input, textarea {
   padding-right: clamp(1.25rem, 5vw, 3rem);
 }
 
+/* Standardized section shell ensuring uniform vertical rhythm across every section */
+.section-shell {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: clamp(6rem, 12vh, 8.5rem);
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+}
+
 /* Standard measure for body text */
 .body-measure {
   max-width: 65ch;

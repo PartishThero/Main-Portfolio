@@ -143,13 +143,15 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
                 key={id}
                 onClick={() => scrollTo(id)}
                 aria-current={isActive ? 'page' : undefined}
-                className="transition-colors duration-150 py-2 px-1 min-h-[44px] flex items-center focus-visible:outline-2 focus-visible:outline-(--accent-main)"
+                className="transition-colors duration-150 py-2 px-1 min-h-[44px] flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
                 style={{
-                  color: isActive ? 'var(--accent-sage)' : 'var(--text-secondary)',
-                  borderBottom: isActive ? '1.5px solid var(--accent-sage)' : '1.5px solid transparent',
+                  color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+                  fontWeight: isActive ? 600 : 400,
+                  borderBottom: isActive ? '2px solid var(--accent-sage)' : '2px solid transparent',
                 }}
               >
-                {label}
+                {isActive && <span className="font-pixel text-[10px] text-(--accent-sage)">▸</span>}
+                <span>{label}</span>
               </button>
             );
           })}

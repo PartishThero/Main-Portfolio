@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
-import { contactInfo } from '../constants/portfolioData';
+import { contactInfo, pageConfig } from '../constants/portfolioData';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -41,13 +41,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="min-h-screen w-full flex items-center justify-center py-24">
+    <section id="contact" className="section-shell">
       <div className="section-container flex flex-col">
-        {/* Section Header */}
+        {/* Section Header with Mascot Companion */}
         <SectionHeader
           label="contact"
           title="Start a quest?"
-          description="Have a project in mind, an opportunity to discuss, or just want to connect? Send a dispatch below."
+          mascotIcon={pageConfig.contact.icon}
+          speechBubble={pageConfig.contact.message}
         />
 
         {/* Two columns */}
@@ -58,11 +59,13 @@ export default function Contact() {
               <div
                 role="status"
                 aria-live="polite"
-                className="p-6 rounded border border-(--accent-sage) bg-(--bg-surface) text-(--text-primary) space-y-2"
+                className="p-6 rounded border border-(--accent-sage) bg-(--bg-surface) text-(--text-primary) space-y-3 shadow-[2px_2px_0px_var(--border-strong)]"
               >
-                <div className="font-display font-medium text-base text-(--accent-sage)">Message dispatched!</div>
+                <div className="font-pixel text-base text-(--accent-sage)">
+                  Message sent! I&apos;ll get back to you soon.
+                </div>
                 <p className="font-sans text-sm text-(--text-secondary) leading-relaxed">
-                  Thank you for reaching out. Your transmission arrived safely and I will get back to you shortly.
+                  Your transmission arrived safely. Thanks for reaching out!
                 </p>
                 <button
                   type="button"
@@ -95,7 +98,7 @@ export default function Contact() {
                     name="name"
                     type="text"
                     required
-                    placeholder="Your name or organization"
+                    placeholder="Your name"
                     value={form.name}
                     onChange={handleChange}
                     disabled={isSubmitting}
@@ -113,7 +116,7 @@ export default function Contact() {
                     name="email"
                     type="email"
                     required
-                    placeholder="you@domain.com"
+                    placeholder="your@email.com"
                     value={form.email}
                     onChange={handleChange}
                     disabled={isSubmitting}
@@ -131,7 +134,7 @@ export default function Contact() {
                     name="message"
                     required
                     rows={5}
-                    placeholder="What are you building or exploring?"
+                    placeholder="What should we work on? :3"
                     value={form.message}
                     onChange={handleChange}
                     disabled={isSubmitting}
@@ -146,14 +149,14 @@ export default function Contact() {
                     aria-live="assertive"
                     className="p-3 rounded border border-rose-900/60 bg-rose-950/20 text-rose-300 font-mono text-xs"
                   >
-                    Transmission failed. Please check your network or email directly at{' '}
+                    Something went wrong — please try again or email me directly at{' '}
                     <a href={`mailto:${contactInfo.email}`} className="underline font-bold">
                       {contactInfo.email}
                     </a>
                   </div>
                 )}
 
-                {/* Submit Button */}
+                {/* Submit Button with Restored Original Voice */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -162,12 +165,11 @@ export default function Contact() {
                   {isSubmitting ? (
                     <>
                       <span className="inline-block w-3 h-3 rounded-full border-2 border-current border-t-transparent animate-spin" />
-                      <span>Sending transmission...</span>
+                      <span>Sending...</span>
                     </>
                   ) : (
                     <>
-                      <span>Send dispatch</span>
-                      <span aria-hidden="true">→</span>
+                      <span>Send the message →</span>
                     </>
                   )}
                 </button>
@@ -179,7 +181,7 @@ export default function Contact() {
           <motion.div {...fadeUp(0.2, 16)} className="lg:col-span-5 flex flex-col gap-8 lg:pl-8 border-t lg:border-t-0 lg:border-l border-(--border-subtle) pt-8 lg:pt-0">
             {/* Direct Email */}
             <div className="flex flex-col gap-1">
-              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Direct Email</span>
+              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Email</span>
               <a
                 href={`mailto:${contactInfo.email}`}
                 className="font-mono text-sm text-(--text-primary) hover:text-(--accent-sage) transition-colors inline-flex items-center gap-2 group w-fit min-h-[44px] py-1"
@@ -195,9 +197,9 @@ export default function Contact() {
               <p className="font-sans text-sm text-(--text-primary)">{contactInfo.location}</p>
             </div>
 
-            {/* Social Links (Single source of truth) */}
+            {/* Social Links */}
             <div className="flex flex-col gap-1.5">
-              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Elsewhere</span>
+              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">My socials</span>
               <div className="flex flex-col gap-1">
                 {contactInfo.socials.map((social) => (
                   <a
@@ -227,10 +229,10 @@ export default function Contact() {
 
             {/* Status / Availability */}
             <div className="flex flex-col gap-2 pt-2">
-              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Status</span>
+              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Availability</span>
               <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-(--bg-surface) border border-(--border-subtle) w-fit">
                 <span className="w-2 h-2 rounded-full bg-(--accent-sage)" aria-hidden="true" />
-                <span className="font-mono text-xs text-(--text-primary)">Open to opportunities</span>
+                <span className="font-mono text-xs text-(--text-primary)">Open to work</span>
               </div>
             </div>
           </motion.div>

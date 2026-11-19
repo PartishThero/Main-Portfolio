@@ -27,7 +27,7 @@ export default function Landing() {
   useEffect(() => {
     if (stage !== 'walking' || prefersReduced) return;
     const id = setInterval(() =>
-      setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
+      setFrameIndex((prev) => (prev + 1) % walkSequence.length), 180);
     return () => clearInterval(id);
   }, [stage, prefersReduced]);
 
@@ -35,7 +35,7 @@ export default function Landing() {
   useEffect(() => {
     if (stage !== 'typing') return;
     const id = setInterval(() =>
-      setIdleIndex(prev => (prev + 1) % idleSequence.length), 2000);
+      setIdleIndex((prev) => (prev + 1) % idleSequence.length), 2000);
     return () => clearInterval(id);
   }, [stage]);
 
@@ -52,18 +52,26 @@ export default function Landing() {
       } else {
         const next = phrase.substring(0, text.length - 1);
         setText(next);
-        if (next === '') { setIsDeleting(false); setLoop(l => l + 1); }
+        if (next === '') {
+          setIsDeleting(false);
+          setLoop((l) => l + 1);
+        }
       }
     }, delay);
     return () => clearTimeout(id);
   }, [text, isDeleting, loop, stage, prefersReduced]);
 
+  const scrollToAbout = () => {
+    const el = document.getElementById('about');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center overflow-hidden">
-      <div className="section-container flex flex-col md:flex-row items-center justify-start gap-8 md:gap-14 lg:gap-20 py-20">
-        {/* Pixel Character */}
+    <div className="section-shell flex items-center justify-center overflow-hidden">
+      <div className="section-container flex flex-col md:flex-row items-center justify-start gap-8 md:gap-14 lg:gap-20">
+        {/* Pixel Character — Prominent visual anchor */}
         <motion.div
-          className="shrink-0 w-32 h-64 sm:w-40 sm:h-80 md:w-48 md:h-96"
+          className="shrink-0 w-40 h-80 sm:w-52 sm:h-[26rem] md:w-60 md:h-[30rem]"
           initial={prefersReduced ? { x: 0, opacity: 1 } : { x: '-30vw', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={prefersReduced ? { duration: 0 } : { duration: 1.8, ease: 'easeOut' }}
@@ -97,7 +105,7 @@ export default function Landing() {
                   gap: '4px',
                   borderLeft: '2px solid var(--accent-sage)',
                   paddingLeft: '0.75rem',
-                  marginTop: '1.5rem',
+                  marginTop: '1.25rem',
                 }}
               >
                 <span>{text}</span>
@@ -105,6 +113,25 @@ export default function Landing() {
                   <span className="cursor-blink" style={{ color: 'var(--accent-sage)' }}>█</span>
                 )}
               </div>
+
+              {/* Next step cue — playful RPG style */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="mt-8 flex justify-center md:justify-start"
+              >
+                <button
+                  type="button"
+                  onClick={scrollToAbout}
+                  className="btn-interactive cursor-pointer group"
+                  aria-label="Scroll to begin quest"
+                >
+                  <span className="font-pixel text-sm text-(--accent-amber) group-hover:translate-y-0.5 transition-transform" aria-hidden="true">↓</span>
+                  <span className="font-mono text-xs tracking-wider">Scroll to explore</span>
+                  <span className="font-pixel text-[11px] text-(--accent-sage)">[START]</span>
+                </button>
+              </motion.div>
             </motion.div>
           )}
         </div>

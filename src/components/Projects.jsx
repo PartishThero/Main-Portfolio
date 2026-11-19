@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import emptyImg from '../assets/surprised-pixel.webp';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
-import { projects, filters } from '../constants/portfolioData';
+import { projects, filters, pageConfig, emptyProjectState } from '../constants/portfolioData';
 
 const DEFAULT_FILTER = 'All';
 
@@ -14,16 +14,17 @@ export default function Projects() {
   );
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center py-20">
+    <div className="section-shell">
       <div className="section-container flex flex-col">
-        {/* Header */}
+        {/* Header with Mascot Companion */}
         <SectionHeader
           label="projects"
           title="Selected works."
-          subtitle="Real projects built for science fairs, hackathons, and personal tools."
+          mascotIcon={pageConfig.projects.icon}
+          speechBubble={pageConfig.projects.message}
         />
 
-        {/* Filter Chips — light, restrained */}
+        {/* Filter Chips */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,8 +36,9 @@ export default function Projects() {
             return (
               <button
                 key={f}
+                type="button"
                 onClick={() => setActive(f)}
-                className={`btn-interactive ${isActive ? 'btn-interactive-active' : ''}`}
+                className={`btn-interactive cursor-pointer ${isActive ? 'btn-interactive-active' : ''}`}
               >
                 {f}
               </button>
@@ -57,12 +59,17 @@ export default function Projects() {
               <img
                 src={emptyImg}
                 alt="Empty state mascot"
-                className="w-20 h-20"
+                className="w-24 h-24"
                 style={{ imageRendering: 'pixelated' }}
               />
-              <p className="font-mono text-xs uppercase tracking-widest text-(--accent-sage)">
-                No projects in this category yet
-              </p>
+              <div className="flex flex-col items-center gap-1.5">
+                <p className="font-pixel text-sm uppercase tracking-wider text-(--accent-amber)">
+                  {emptyProjectState.title}
+                </p>
+                <p className="font-mono text-xs text-(--text-secondary)">
+                  {emptyProjectState.message}
+                </p>
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -89,19 +96,19 @@ export default function Projects() {
                       opacity: { duration: 0.2 },
                     }}
                     className={`group py-7 sm:py-8 border-b border-(--border-subtle) flex flex-col md:flex-row md:items-start justify-between gap-6 transition-colors hover:bg-(--bg-surface)/40 px-2 sm:px-4 rounded-md ${
-                      p.featured ? 'bg-(--bg-surface)/25' : ''
+                      p.featured ? 'bg-(--bg-surface)/30' : ''
                     }`}
                   >
                     {/* Left: Number + Content */}
-                    <div className="flex items-start gap-5 sm:gap-7 flex-1">
-                      <span className="font-mono text-xs text-(--text-muted) pt-1 shrink-0">
+                    <div className="flex items-start gap-4 sm:gap-6 flex-1">
+                      <span className="font-pixel text-xs text-(--text-muted) pt-1 shrink-0">
                         0{idx + 1}
                       </span>
 
                       <div className="flex flex-col gap-2.5 flex-1">
-                        {/* Meta: Year / Badge */}
+                        {/* Meta */}
                         <div className="flex flex-wrap items-center gap-2 font-mono text-[0.7rem] uppercase tracking-wider">
-                          <span className="text-(--accent-amber)">
+                          <span className="text-(--accent-amber) font-semibold">
                             {p.year}
                           </span>
                           <span className="text-(--border-strong)">·</span>
@@ -109,8 +116,8 @@ export default function Projects() {
                             {p.category}
                           </span>
                           {p.featured && (
-                            <span className="ml-1 px-1.5 py-0.2 rounded text-[0.65rem] bg-(--bg-surface-raised) text-(--accent-sage) border border-(--border-subtle)">
-                              Key Project
+                            <span className="ml-1 px-1.5 py-0.5 rounded text-[0.65rem] bg-(--bg-surface-raised) text-(--accent-sage) border border-(--border-subtle)">
+                              Key Quest
                             </span>
                           )}
                         </div>
@@ -147,7 +154,7 @@ export default function Projects() {
                     </div>
 
                     {/* Right: Aligned Link Affordance */}
-                    <div className="md:pt-1 md:self-start shrink-0 flex items-center gap-1.5 font-mono text-xs text-(--text-muted) group-hover:text-(--accent-sage) transition-colors pl-10 md:pl-0">
+                    <div className="md:pt-1 md:self-start shrink-0 flex items-center gap-1.5 font-mono text-xs text-(--text-muted) group-hover:text-(--accent-sage) transition-colors pl-8 md:pl-0">
                       <span>View Code</span>
                       <svg
                         className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

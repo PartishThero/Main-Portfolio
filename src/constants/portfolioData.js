@@ -32,7 +32,7 @@ export const projects = [
     title: 'Driver Drowsiness Detector',
     year: 'Science Fair',
     highlight: 'Awarded First Prize for real-time safety vision',
-    desc: 'Real-time computer vision system that monitors driver facial landmarks and eye aspect ratios via webcam, sounding an alert upon fatigue detection. Awarded 1st Prize at Science Fair.',
+    desc: 'Real-time computer vision system that monitors driver facial landmarks and eye aspect ratios via webcam, sounding an alert upon fatigue detection.',
     tech: ['Python', 'OpenCV', 'Computer Vision'],
     category: 'personal',
     featured: true,
@@ -52,7 +52,7 @@ export const projects = [
   {
     id: 3,
     title: 'The Archivist',
-    year: 'Personal Work',
+    year: 'Study System',
     highlight: 'Aesthetic digital study workplace & clause tracker',
     desc: 'Personal knowledge management and digital workspace featuring custom subject archives, modular clause tracking, active-recall review, and an AI study assistant.',
     tech: ['React', 'Supabase', 'Tailwind CSS', 'Framer Motion'],
@@ -63,7 +63,7 @@ export const projects = [
   {
     id: 4,
     title: 'Laya',
-    year: 'Personal Work',
+    year: 'Spatial Audio',
     highlight: 'Infinite spatial canvas with range-based audio streaming',
     desc: 'Tactile spatial music exploration platform presenting vinyl records on an infinite 2D canvas with pan-and-zoom controls, crate organization, and range-based HTTP 206 audio streaming.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB'],
@@ -74,7 +74,7 @@ export const projects = [
   {
     id: 5,
     title: 'Orators Society',
-    year: 'Web Experience',
+    year: 'Web Platform',
     highlight: 'Kinetic typography with WebGL & Lenis smooth scrolling',
     desc: 'Interactive web experience for The Orators Society featuring fluid kinetic typography, WebGL/OGL shaders, Lenis smooth scrolling, and Supabase-backed event archives.',
     tech: ['React', 'WebGL', 'GSAP', 'Lenis', 'Supabase'],
@@ -83,6 +83,11 @@ export const projects = [
     link: 'https://github.com/PartishThero/orators-society',
   },
 ];
+
+export const emptyProjectState = {
+  title: 'Caught me :3',
+  message: 'Come back soon - Nothing here. YET.',
+};
 
 export const filters = ['All', 'Professional', 'Personal'];
 
@@ -105,12 +110,16 @@ export const skills = {
     { name: 'JavaScript' },
     { name: 'Java' },
   ],
-  'Creative & Vision': [
+  'Vision & Graphics': [
     { name: 'OpenCV' },
     { name: 'Computer Vision' },
     { name: 'WebGL / Shaders' },
     { name: 'Leaflet' },
-    { name: 'Git & Vite' },
+  ],
+  'Tools & Workflow': [
+    { name: 'Git' },
+    { name: 'Vite' },
+    { name: 'Figma' },
   ],
 };
 
