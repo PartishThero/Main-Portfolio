@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 const isFinePointer = () =>
-  typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches;
+  typeof window !== 'undefined' &&
+  window.matchMedia('(pointer: fine)').matches &&
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const CustomCursor = () => {
   const [active, setActive] = useState(false);
@@ -138,7 +140,6 @@ const CustomCursor = () => {
           opacity,
           backgroundColor: bg,
           border,
-          boxShadow: hoverType === 'hoverable' ? '0 0 10px var(--accent-main)' : 'none',
           transform: `translate(-50%, -50%) scale(${scale})`,
           transition: 'width 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.12s ease-out, border-radius 0.15s ease, opacity 0.15s ease, background-color 0.15s ease',
         }}

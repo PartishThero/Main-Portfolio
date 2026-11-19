@@ -12,7 +12,7 @@ export default function Footer() {
         <button
           onClick={scrollToTop}
           type="button"
-          className="hover:text-(--text-primary) transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:underline cursor-pointer"
+          className="hover:text-(--text-primary) transition-colors min-h-[44px] px-2 flex items-center gap-1.5 focus-visible:outline-none focus-visible:underline cursor-pointer"
           aria-label="Back to top"
         >
           <span>Back to top</span>

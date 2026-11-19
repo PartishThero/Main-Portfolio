@@ -22,6 +22,11 @@ function App() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+      {/* Accessible skip link */}
+      <a href="#main-scroll" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Retuned Waves Shader Background */}
       <Waves
         lineColor="#2d2422"

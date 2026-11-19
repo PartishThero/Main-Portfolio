@@ -88,7 +88,7 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
           <button
             onClick={() => scrollTo('home')}
             aria-label="Home"
-            className="group flex items-center justify-center p-1 rounded transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
+            className="group min-w-[44px] min-h-[44px] flex items-center justify-center p-1 rounded transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
           >
             <img
               src={currentIcon}
@@ -135,7 +135,7 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
         </div>
 
         {/* RIGHT (Desktop): nav links */}
-        <nav aria-label="Main Navigation" className="pointer-events-auto hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-widest">
+        <nav aria-label="Main Navigation" className="pointer-events-auto hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-widest">
           {navLinks.map(({ id, label }) => {
             const isActive = activeSection === id;
             return (
@@ -143,10 +143,10 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
                 key={id}
                 onClick={() => scrollTo(id)}
                 aria-current={isActive ? 'page' : undefined}
-                className="transition-colors duration-150 py-1 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
+                className="transition-colors duration-150 py-2 px-1 min-h-[44px] flex items-center focus-visible:outline-2 focus-visible:outline-(--accent-main)"
                 style={{
-                  color: isActive ? 'var(--accent-main)' : 'var(--text-secondary)',
-                  borderBottom: isActive ? '1.5px solid var(--accent-main)' : '1.5px solid transparent',
+                  color: isActive ? 'var(--accent-sage)' : 'var(--text-secondary)',
+                  borderBottom: isActive ? '1.5px solid var(--accent-sage)' : '1.5px solid transparent',
                 }}
               >
                 {label}
@@ -183,7 +183,7 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="pointer-events-auto md:hidden mx-4 mt-1 p-4 rounded-lg bg-(--bg-surface) border border-(--accent-main) shadow-xl flex flex-col gap-3 font-mono text-xs uppercase tracking-wider"
+            className="pointer-events-auto md:hidden mx-4 mt-1 p-4 rounded-lg bg-(--bg-surface) border border-(--border-strong) shadow-xl flex flex-col gap-2 font-mono text-xs uppercase tracking-wider"
           >
             {navLinks.map(({ id, label }) => {
               const isActive = activeSection === id;
@@ -194,12 +194,12 @@ export default function Navbar({ activeSection: controlledSection, onActiveSecti
                   aria-current={isActive ? 'page' : undefined}
                   className="min-h-[44px] flex items-center justify-between px-3 rounded text-left transition-colors"
                   style={{
-                    backgroundColor: isActive ? 'rgba(52, 211, 153, 0.12)' : 'transparent',
-                    color: isActive ? 'var(--accent-main)' : 'var(--text-primary)',
+                    backgroundColor: isActive ? 'rgba(78, 127, 104, 0.15)' : 'transparent',
+                    color: isActive ? 'var(--accent-sage)' : 'var(--text-primary)',
                   }}
                 >
                   <span>{label}</span>
-                  {isActive && <span className="text-[10px] text-(--accent-main)">●</span>}
+                  {isActive && <span className="text-[10px] text-(--accent-sage)">●</span>}
                 </button>
               );
             })}

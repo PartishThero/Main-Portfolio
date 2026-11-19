@@ -9,7 +9,7 @@
   --color-border-strong: #4a3c38;
   --color-text-primary: #f2ece1;
   --color-text-secondary: #a89f91;
-  --color-text-muted: #73695d;
+  --color-text-muted: #8c8275;
   --color-accent-sage: #4e7f68;
   --color-accent-amber: #c88656;
   --color-accent-purple: #7d708d;
@@ -29,7 +29,7 @@
     --border-strong: #4a3c38;
     --text-primary: #f2ece1;
     --text-secondary: #a89f91;
-    --text-muted: #73695d;
+    --text-muted: #8c8275;
     --accent-sage: #4e7f68;
     --accent-sage-hover: #5d987d;
     --accent-amber: #c88656;
@@ -106,6 +106,7 @@ input, textarea {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  min-height: 44px;
   padding: 0.5rem 1.25rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -117,6 +118,45 @@ input, textarea {
   color: var(--text-primary);
   box-shadow: 2px 2px 0px var(--border-strong);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-sage);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--accent-sage);
+  color: var(--bg-primary);
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 0px var(--border-strong);
+  transform: translateY(-200%);
+  transition: transform 0.15s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .btn-interactive:hover {

@@ -12,20 +12,24 @@ const walkSequence = [walkLeft, walkRight, walkCenter, walkRight];
 const idleSequence = [walkCenter, restbopImg];
 
 export default function Landing() {
-  const [stage, setStage] = useState('walking');
+  const prefersReduced =
+    typeof window !== 'undefined' &&
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+  const [stage, setStage] = useState(prefersReduced ? 'typing' : 'walking');
   const [frameIndex, setFrameIndex] = useState(0);
   const [idleIndex, setIdleIndex] = useState(0);
-  const [text, setText] = useState('');
+  const [text, setText] = useState(prefersReduced ? phrases[0] : '');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
 
-  /* ── Walk frames ── */
+  /* ── Walk frames (bypassed if reduced motion is requested) ── */
   useEffect(() => {
-    if (stage !== 'walking') return;
+    if (stage !== 'walking' || prefersReduced) return;
     const id = setInterval(() =>
       setFrameIndex(prev => (prev + 1) % walkSequence.length), 180);
     return () => clearInterval(id);
-  }, [stage]);
+  }, [stage, prefersReduced]);
 
   /* ── Idle alternation every 2s ── */
   useEffect(() => {
@@ -35,9 +39,9 @@ export default function Landing() {
     return () => clearInterval(id);
   }, [stage]);
 
-  /* ── Typewriter ── */
+  /* ── Typewriter (bypassed if reduced motion is requested) ── */
   useEffect(() => {
-    if (stage !== 'typing') return;
+    if (stage !== 'typing' || prefersReduced) return;
     const phrase = phrases[loop % phrases.length];
     const delay = isDeleting ? 45 : 90;
     const id = setTimeout(() => {
@@ -52,7 +56,7 @@ export default function Landing() {
       }
     }, delay);
     return () => clearTimeout(id);
-  }, [text, isDeleting, loop, stage]);
+  }, [text, isDeleting, loop, stage, prefersReduced]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -60,14 +64,14 @@ export default function Landing() {
         {/* Pixel Character */}
         <motion.div
           className="shrink-0 w-32 h-64 sm:w-40 sm:h-80 md:w-48 md:h-96"
-          initial={{ x: '-30vw', opacity: 0 }}
+          initial={prefersReduced ? { x: 0, opacity: 1 } : { x: '-30vw', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1.8, ease: 'easeOut' }}
+          transition={prefersReduced ? { duration: 0 } : { duration: 1.8, ease: 'easeOut' }}
           onAnimationComplete={() => setStage('typing')}
         >
           <img
             src={stage === 'walking' ? walkSequence[frameIndex] : idleSequence[idleIndex]}
-            alt="Pixel Character"
+            alt="Partish pixel character"
             className="w-full h-full object-contain"
             style={{ imageRendering: 'pixelated' }}
           />
@@ -77,9 +81,9 @@ export default function Landing() {
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           {stage === 'typing' && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={prefersReduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: prefersReduced ? 0 : 0.3 }}
             >
               <h1 className="name-big">
                 <span className="highlight">Partish.</span>
@@ -91,13 +95,15 @@ export default function Landing() {
                   letterSpacing: '0.12em',
                   color: 'var(--text-secondary)',
                   gap: '4px',
-                  borderLeft: '2px solid var(--accent-main)',
+                  borderLeft: '2px solid var(--accent-sage)',
                   paddingLeft: '0.75rem',
                   marginTop: '1.5rem',
                 }}
               >
                 <span>{text}</span>
-                <span className="cursor-blink" style={{ color: 'var(--accent-main)' }}>█</span>
+                {!prefersReduced && (
+                  <span className="cursor-blink" style={{ color: 'var(--accent-sage)' }}>█</span>
+                )}
               </div>
             </motion.div>
           )}

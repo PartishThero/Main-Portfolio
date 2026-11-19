@@ -67,7 +67,7 @@ export default function Contact() {
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="font-mono text-xs text-(--text-muted) hover:text-(--accent-sage) underline pt-2 cursor-pointer"
+                  className="font-mono text-xs text-(--text-muted) hover:text-(--accent-sage) underline py-2 min-h-[44px] flex items-center cursor-pointer"
                 >
                   Send another message
                 </button>
@@ -178,11 +178,11 @@ export default function Contact() {
           {/* Direct Info & Socials Column */}
           <motion.div {...fadeUp(0.2, 16)} className="lg:col-span-5 flex flex-col gap-8 lg:pl-8 border-t lg:border-t-0 lg:border-l border-(--border-subtle) pt-8 lg:pt-0">
             {/* Direct Email */}
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1">
               <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Direct Email</span>
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="font-mono text-sm text-(--text-primary) hover:text-(--accent-sage) transition-colors inline-flex items-center gap-2 group w-fit"
+                className="font-mono text-sm text-(--text-primary) hover:text-(--accent-sage) transition-colors inline-flex items-center gap-2 group w-fit min-h-[44px] py-1"
               >
                 <span>{contactInfo.email}</span>
                 <span className="text-(--text-muted) group-hover:text-(--accent-sage) transition-colors" aria-hidden="true">↗</span>
@@ -190,22 +190,22 @@ export default function Contact() {
             </div>
 
             {/* Location */}
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1">
               <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Location</span>
               <p className="font-sans text-sm text-(--text-primary)">{contactInfo.location}</p>
             </div>
 
             {/* Social Links (Single source of truth) */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1.5">
               <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Elsewhere</span>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-1">
                 {contactInfo.socials.map((social) => (
                   <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-sm text-(--text-secondary) hover:text-(--accent-sage) transition-colors inline-flex items-center gap-2 group w-fit"
+                    className="font-mono text-sm text-(--text-secondary) hover:text-(--accent-sage) transition-colors inline-flex items-center gap-2 group w-fit min-h-[44px] py-1"
                   >
                     <span>{social.label}</span>
                     <svg
