@@ -64,7 +64,7 @@ export default function Landing() {
         style={{
           height: '100vh',
           width: '100vw',
-          backgroundColor: 'var(--bg-primary)',
+          backgroundColor: 'transparent',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -136,7 +136,7 @@ export default function Landing() {
         height: '100vh',
         width: '100vw',
         paddingLeft: '7vw',
-        backgroundColor: 'var(--bg-primary)',
+        backgroundColor: 'transparent',
         overflow: 'hidden',
       }}
     >

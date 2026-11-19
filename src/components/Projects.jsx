@@ -8,8 +8,18 @@ import { projects, filters } from '../constants/portfolioData';
 /** The default "show all" filter value */
 const DEFAULT_FILTER = 'All';
 
-const layoutStyle = { backgroundColor: 'var(--bg-surface)', border: '1.5px solid var(--accent-main)', padding: 'clamp(1.5rem,4vw,2.5rem)', borderRadius: '0.5rem', boxShadow: '4px 4px 0px var(--accent-main)', transition: 'transform 0.15s ease, box-shadow 0.15s ease', minHeight: '220px' };
-const containerStyle = { backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '8rem', paddingLeft: 'clamp(1.25rem,14vw,14vw)', paddingRight: 'clamp(1.25rem,14vw,14vw)' };
+const layoutStyle = {
+  backgroundColor: 'rgba(20, 28, 24, 0.94)',
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+  border: '1.5px solid var(--accent-main)',
+  padding: 'clamp(1.5rem,4vw,2.5rem)',
+  borderRadius: '0.5rem',
+  boxShadow: '4px 4px 0px var(--accent-main)',
+  transition: 'box-shadow 0.15s ease',
+  minHeight: '220px',
+};
+const containerStyle = { backgroundColor: 'transparent', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '8rem', paddingLeft: 'clamp(1.25rem,14vw,14vw)', paddingRight: 'clamp(1.25rem,14vw,14vw)' };
 
 /** Returns button styles for a filter chip; isActive drives the filled/outlined variant. */
 const filterButtonStyle = (isActive) => ({
@@ -24,8 +34,6 @@ const filterButtonStyle = (isActive) => ({
   transform: isActive ? 'translate(2px, 2px)' : 'translate(0, 0)',
 });
 
-const cardEnter  = (e) => { e.currentTarget.style.transform = 'translate(2px, 2px)'; e.currentTarget.style.boxShadow = '2px 2px 0px var(--accent-main)'; };
-const cardLeave  = (e) => { e.currentTarget.style.transform = 'translate(0, 0)';     e.currentTarget.style.boxShadow = '4px 4px 0px var(--accent-main)'; };
 const filterEnter = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,-3px)'; e.currentTarget.style.boxShadow = '4px 8px 0px var(--accent-main)'; } };
 const filterLeave = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,0)';    e.currentTarget.style.boxShadow = '4px 4px 0px var(--accent-main)'; } };
 
@@ -69,23 +77,38 @@ export default function Projects() {
             </div>
           </motion.div>
         ) : (
-          <motion.div key="grid" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} className="w-full grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '2rem' }}>
+          <motion.div
+            key="grid"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="w-full grid relative"
+            style={{
+              position: 'relative',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
+              gap: '2rem',
+            }}
+          >
             <AnimatePresence mode="popLayout">
-              {filtered.map((p, i) => (
+              {filtered.map((p) => (
                 <motion.a
                   key={p.id}
-                  layout
+                  layout="position"
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  transition={{
+                    layout: { duration: 0.35, ease: [0.25, 1, 0.5, 1] },
+                    opacity: { duration: 0.2 },
+                    scale: { duration: 0.2 },
+                  }}
+                  whileHover={{ x: 2, y: 2, boxShadow: '2px 2px 0px var(--accent-main)' }}
                   className="flex flex-col justify-between"
                   style={layoutStyle}
-                  onMouseEnter={cardEnter}
-                  onMouseLeave={cardLeave}
                 >
                   <div className="flex flex-col" style={{ gap: '0.8rem', marginBottom: '2rem' }}>
                     <div className="flex items-center justify-between">

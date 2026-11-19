@@ -6,7 +6,7 @@ import { contactInfo } from '../constants/portfolioData';
 
 // Styles
 const inputStyle = { width: '100%', backgroundColor: 'var(--bg-surface)', border: '1.5px solid var(--accent-main)', borderRadius: '0.5rem', padding: '0.85rem 1rem', color: 'var(--text-primary)', fontFamily: '"Courier New", monospace', fontSize: '0.85rem', outline: 'none', transition: 'box-shadow 0.15s ease', resize: 'none' };
-const maindivStyle = { backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '6rem', paddingLeft: 'clamp(1.25rem, 14vw, 14vw)', paddingRight: 'clamp(1.25rem, 14vw, 14vw)' };
+const maindivStyle = { backgroundColor: 'transparent', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '6rem', paddingLeft: 'clamp(1.25rem, 14vw, 14vw)', paddingRight: 'clamp(1.25rem, 14vw, 14vw)' };
 const buttonStyle = { letterSpacing: '0.12em', padding: '0.75rem 2rem', borderRadius: '0.5rem', backgroundColor: 'var(--accent-main)', color: 'var(--bg-primary)', border: '1.5px solid var(--accent-main)', boxShadow: '4px 4px 0px var(--bg-surface)', transition: 'all 0.12s ease', marginTop: '0.5rem' };
 const formInputStyle = { letterSpacing: '0.1em', color: 'var(--text-secondary)' };
 

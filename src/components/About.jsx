@@ -6,7 +6,7 @@ import { fadeUp } from '../constants/animations';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) flex flex-col">
+    <div className="min-h-screen bg-transparent text-(--text-primary) flex flex-col">
       <div className="flex-1 flex items-center justify-center px-10 sm:px-12 md:px-24 pt-28 pb-16">
 
         {/* Stack on mobile, row on md+ */}
@@ -31,7 +31,16 @@ export default function About() {
           </motion.div>
 
           {/* Text */}
-          <div className="p-8! flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left" >
+          <div
+            className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left p-6 md:p-8 rounded-xl"
+            style={{
+              backgroundColor: 'rgba(20, 28, 24, 0.78)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1.5px solid rgba(52, 211, 153, 0.25)',
+              boxShadow: '4px 4px 0px rgba(52, 211, 153, 0.3)',
+            }}
+          >
 
             <SectionHeader label="about me" title="Hey, I'm" highlightWord="Partish." />
 

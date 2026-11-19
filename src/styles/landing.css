@@ -14,14 +14,15 @@
 /* Name heading */
 .name-big {
   font-family: "Boldonse", system-ui;
-  font-size: 4rem;
-  line-height: 0.88;
+  font-size: 4.5rem;
+  line-height: 0.95;
   white-space: normal;
   max-width: 5ch;
   color: var(--text-primary);
   margin-bottom: 1rem;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.8));
 }
 .highlight {
   color: var(--accent-main);
-  text-shadow: var(--accent-glow);
+  text-shadow: 0 0 28px rgba(52, 211, 153, 0.4);
 }
