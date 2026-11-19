@@ -9,8 +9,10 @@ const scrollTo = (id) => {
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 };
 
-export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('home');
+export default function Navbar({ activeSection: controlledSection, onActiveSectionChange }) {
+  const [internalSection, setInternalSection] = useState('home');
+  const activeSection = controlledSection !== undefined ? controlledSection : internalSection;
+  const setActiveSection = onActiveSectionChange || setInternalSection;
   const [showBubble, setShowBubble] = useState(false);
   const [currentIcon, setCurrentIcon] = useState(headImg);
   const [bubbleMsg, setBubbleMsg] = useState('');
