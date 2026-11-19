@@ -27,17 +27,18 @@ function App() {
         Skip to main content
       </a>
 
-      {/* Retuned Waves Shader Background */}
+      {/* Retuned Waves Shader Background — terrain feel */}
       <Waves
-        lineColor="#2d2422"
-        accentColor="#4e7f68"
+        lineColor="#382e2a"
+        accentColor="#5d987d"
         backgroundColor="#120f0e"
-        spacing={38}
-        lineWidth={0.95}
+        spacing={34}
+        lineWidth={1.1}
+        amplitude={40}
         speed={moodSpeed[activeSection] || 0.9}
-        mouseStrength={0.5}
-        mouseRadius={85}
-        opacity={0.19}
+        mouseStrength={0.65}
+        mouseRadius={95}
+        opacity={0.28}
         style={{
           position: 'fixed',
           top: 0,

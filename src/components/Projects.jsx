@@ -154,17 +154,11 @@ export default function Projects() {
                     </div>
 
                     {/* Right: Aligned Link Affordance */}
-                    <div className="md:pt-1 md:self-start shrink-0 flex items-center gap-1.5 font-mono text-xs text-(--text-muted) group-hover:text-(--accent-sage) transition-colors pl-8 md:pl-0">
-                      <span>View Code</span>
-                      <svg
-                        className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
+                    <div className="md:pt-1 md:self-start shrink-0 flex items-center gap-1.5 pl-8 md:pl-0">
+                      <span className="font-pixel text-xs text-(--text-muted) group-hover:text-(--text-primary) transition-colors border border-(--border-strong) px-2.5 py-1 rounded bg-(--bg-surface) shadow-[2px_2px_0px_var(--border-strong)] group-hover:shadow-[2px_2px_0px_var(--accent-sage)] group-hover:border-(--accent-sage) inline-flex items-center gap-1.5">
+                        <span>VIEW CODE</span>
+                        <span className="text-(--accent-sage)">▸</span>
+                      </span>
                     </div>
                   </motion.a>
                 ))}

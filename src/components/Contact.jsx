@@ -230,9 +230,9 @@ export default function Contact() {
             {/* Status / Availability */}
             <div className="flex flex-col gap-2 pt-2">
               <span className="font-mono text-[0.7rem] uppercase tracking-wider text-(--text-muted)">Availability</span>
-              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-(--bg-surface) border border-(--border-subtle) w-fit">
-                <span className="w-2 h-2 rounded-full bg-(--accent-sage)" aria-hidden="true" />
-                <span className="font-mono text-xs text-(--text-primary)">Open to work</span>
+              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded bg-(--bg-surface) border border-(--border-strong) shadow-[2px_2px_0px_var(--border-strong)] w-fit">
+                <span className="w-2.5 h-2.5 bg-(--accent-sage) inline-block" aria-hidden="true" style={{ imageRendering: 'pixelated' }} />
+                <span className="font-pixel text-xs text-(--text-primary)">OPEN TO WORK</span>
               </div>
             </div>
           </motion.div>
