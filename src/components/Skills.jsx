@@ -2,45 +2,29 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
-import { skills, pageConfig } from '../constants/portfolioData';
+import { skills } from '../constants/portfolioData';
 
 export default function Skills() {
   return (
-    <div className="section-shell">
-      <div className="section-container flex flex-col gap-8">
-        {/* Header with Mascot Companion */}
-        <SectionHeader
-          label="inventory"
-          title="What I work with."
-          mascotIcon={pageConfig.skills.icon}
-          speechBubble={pageConfig.skills.message}
-        />
+    <div className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: 'transparent', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '4rem',}}>
+      <div className="flex flex-col gap-12 w-full" style={{ maxWidth: '680px', padding: '0 clamp(1.25rem, 6vw, 1.5rem)' }} >
 
-        {/* Grouped inventory list / skill tree slots */}
-        <div className="flex flex-col border-t border-(--border-subtle)">
-          {Object.entries(skills).map(([category, items], idx) => (
-            <motion.div
-              key={category}
-              {...fadeUp(0.1 + idx * 0.08, 16)}
-              className="py-5 sm:py-6 border-b border-(--border-subtle) flex flex-col md:flex-row md:items-baseline gap-3 md:gap-12"
-            >
-              {/* Category Slot */}
-              <div className="w-56 shrink-0 flex items-center gap-2">
-                <span className="font-pixel text-xs text-(--accent-amber)">◆</span>
-                <span className="font-pixel text-[11px] uppercase tracking-wider text-(--text-muted)">
-                  SLOT 0{idx + 1} · {category}
-                </span>
-              </div>
+        {/* Header */}
+        <SectionHeader label="skills" title="What I" highlightWord="work with." />
 
-              {/* Items Inventory Grid */}
-              <div className="flex flex-wrap gap-2.5">
-                {items.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className="font-mono text-xs px-3 py-1.5 rounded bg-(--bg-surface) border border-(--border-strong) text-(--text-primary) shadow-[1.5px_1.5px_0px_var(--border-strong)] hover:shadow-[2px_2px_0px_var(--accent-sage)] hover:border-(--accent-sage) hover:-translate-y-0.5 transition-all cursor-default"
-                  >
-                    {skill.name}
-                  </span>
+        {/* Categories */}
+        <div className="flex flex-col gap-12">
+          {Object.entries(skills).map(([category, items], catIndex) => (
+            <motion.div key={category} {...fadeUp(0.2 + catIndex * 0.1, 20)} className="flex flex-col gap-5">
+              <p className="font-mono text-xs uppercase" style={{ letterSpacing: '0.15em', color: 'var(--accent-secondary)' }}> {category} </p>
+              <div className="flex flex-wrap gap-4 sm:gap-6">
+                {items.map((skill, i) => (
+                  <motion.div key={skill.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 + catIndex * 0.1 + i * 0.05 }} className="flex flex-col items-center gap-2 group" >
+                    <div className="flex items-center justify-center font-mono text-lg group-hover:opacity-80 transition-all duration-200" style={{ width: 'clamp(2.75rem, 8vw, 3.5rem)', height: 'clamp(2.75rem, 8vw, 3.5rem)', backgroundColor: 'var(--bg-surface)', border: '1.5px solid var(--accent-main)', borderRadius: '0.35rem', boxShadow: '3px 3px 0px var(--accent-main)', color: 'var(--accent-main)' }} >
+                      <i className={skill.icon}></i>
+                    </div>
+                    <span className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--text-secondary)' }}> {skill.name} </span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

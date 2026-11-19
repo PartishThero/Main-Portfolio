@@ -1,205 +1,65 @@
 @import "tailwindcss";
 @import "./landing.css";
 
-@theme {
-  --color-bg-primary: #120f0e;
-  --color-bg-surface: #1a1615;
-  --color-bg-surface-raised: #241e1c;
-  --color-border-subtle: #2d2422;
-  --color-border-strong: #4a3c38;
-  --color-text-primary: #f2ece1;
-  --color-text-secondary: #a89f91;
-  --color-text-muted: #8c8275;
-  --color-accent-sage: #4e7f68;
-  --color-accent-amber: #c88656;
-  --color-accent-purple: #7d708d;
-
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-pixel: "Pixelify Sans", monospace, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+:root {
+  --bg-primary: #090d0b;
+  --bg-surface: #141c18;
+  --text-primary: #f0fdf4;
+  --text-secondary: #a3b8b0;
+  --accent-main: #34d399;
+  --accent-secondary: #5eead4;
+  --accent-tertiary: #10b981;
+  --accent-glow: 0 0 20px rgba(52, 211, 153, 0.3);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none !important;
+  scrollbar-width: none;
 }
 
-@layer base {
-  :root {
-    --bg-primary: #120f0e;
-    --bg-surface: #1a1615;
-    --bg-surface-raised: #241e1c;
-    --border-subtle: #2d2422;
-    --border-strong: #4a3c38;
-    --text-primary: #f2ece1;
-    --text-secondary: #a89f91;
-    --text-muted: #8c8275;
-    --accent-sage: #4e7f68;
-    --accent-sage-hover: #5d987d;
-    --accent-amber: #c88656;
-    --accent-purple: #7d708d;
-    /* Legacy aliases for safe backward compat */
-    --accent-main: var(--accent-sage);
-    --accent-secondary: var(--accent-amber);
-    --accent-tertiary: var(--accent-purple);
-  }
-
-  html, body {
-    width: 100%;
-    height: 100%;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  * {
-    scrollbar-width: none;
-  }
-
-  *::-webkit-scrollbar {
-    display: none;
-  }
-
-  ::selection {
-    background-color: var(--accent-sage);
-    color: var(--bg-primary);
-  }
-
-  input, textarea {
-    caret-color: var(--accent-sage);
-  }
+*::-webkit-scrollbar {
+  display: none;
 }
 
-/* Custom cursor only for fine pointer devices, never overriding inputs/text selection */
-@media (pointer: fine) {
-  .has-custom-cursor,
-  .has-custom-cursor a,
-  .has-custom-cursor button,
-  .has-custom-cursor [role="button"] {
-    cursor: none;
-  }
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+p, span, h1, h2, h3, h4, h5, h6, li, code, a, button, input, textarea {
+  cursor: none !important;
+  pointer-events: auto !important;
+}
+
+::selection {
+  background-color: var(--accent-main);
+  color: var(--bg-primary);
 }
 
 input, textarea {
-  cursor: text !important;
-  pointer-events: auto;
+  caret-color: var(--accent-main);
 }
 
-/* Shared container across all sections */
-.section-container {
-  width: 100%;
-  max-width: 68rem; /* 1088px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: clamp(1.25rem, 5vw, 3rem);
-  padding-right: clamp(1.25rem, 5vw, 3rem);
+.content-grid {
+  padding-left: clamp(1.25rem, 14vw, 14vw);
+  padding-right: clamp(1.25rem, 14vw, 14vw);
 }
 
-/* Standardized section shell ensuring uniform vertical rhythm across every section */
-.section-shell {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-top: clamp(6rem, 12vh, 8.5rem);
-  padding-bottom: clamp(4rem, 8vh, 6rem);
+body {
+  background-color: var(--bg-primary);
 }
 
-/* Standard measure for body text */
-.body-measure {
-  max-width: 65ch;
-  line-height: 1.75;
-}
-
-/* Shared elevation and interactive button styles */
-.btn-interactive {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 44px;
-  padding: 0.5rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 0.375rem;
-  border: 1.5px solid var(--border-strong);
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  box-shadow: 3px 3px 0px var(--border-strong);
-  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-interactive:hover {
-  border-color: var(--accent-sage);
-  color: var(--text-primary);
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0px var(--accent-sage);
-}
-
-.btn-interactive:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px var(--border-strong);
-}
-
-.btn-interactive-active {
-  border-color: var(--accent-sage);
-  background-color: var(--accent-sage);
-  color: var(--bg-primary);
-  box-shadow: 1px 1px 0px var(--bg-primary), 3px 3px 0px var(--accent-sage);
-  transform: translate(1px, 1px);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent-sage);
-  outline-offset: 2px;
-}
-
-.skip-link {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 100;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: var(--accent-sage);
-  color: var(--bg-primary);
-  border-radius: 0.25rem;
-  box-shadow: 2px 2px 0px var(--border-strong);
-  transform: translateY(-200%);
-  transition: transform 0.15s ease;
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* ── On touch devices: default cursor ── */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
   }
-}
-
-
-/* Subtle pixel dither / analog texture overlay */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 40;
-  opacity: 0.032;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+  p, span, h1, h2, h3, h4, h5, h6, li, code, a, button, input, textarea {
+    cursor: auto !important;
+  }
 }

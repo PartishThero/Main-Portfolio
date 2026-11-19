@@ -3,59 +3,76 @@ import { motion } from 'framer-motion';
 import headImg from '../assets/head.webp';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
-import { pageConfig } from '../constants/portfolioData';
 
 export default function About() {
   return (
-    <div className="section-shell">
-      <div className="section-container flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16">
-        {/* Avatar Sprite — Proper crisp pixel portrait scaled up */}
-        <motion.div {...fadeUp(0.1, 16)} className="shrink-0 flex flex-col items-center gap-3">
-          <div
-            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-(--bg-surface) border border-(--border-subtle) rounded-md flex items-center justify-center p-4 shadow-[3px_3px_0px_var(--border-subtle)]"
-          >
-            <img
-              src={headImg}
-              alt="Partish avatar"
-              className="w-full h-full object-contain"
-              style={{ imageRendering: 'pixelated' }}
-            />
-          </div>
-          <span className="font-mono text-xs uppercase tracking-widest text-(--text-muted)">
-            Partish · Developer
-          </span>
-        </motion.div>
+    <div className="min-h-screen bg-transparent text-(--text-primary) flex flex-col">
+      <div className="flex-1 flex items-center justify-center px-10 sm:px-12 md:px-24 pt-28 pb-16">
 
-        {/* Text column */}
-        <div className="flex-1 flex flex-col gap-6 text-center md:text-left">
-          {/* Section Header with Mascot Companion Greeting */}
-          <SectionHeader
-            label="about me"
-            title="Hey, I'm Partish."
-            mascotIcon={pageConfig.about.icon}
-            speechBubble={pageConfig.about.message}
-          />
+        {/* Stack on mobile, row on md+ */}
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl p-2">
 
-          {/* Restored Original Voice */}
-          <motion.p {...fadeUp(0.2, 16)} className="font-body text-base text-(--text-primary) body-measure leading-relaxed">
-            I&apos;m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I&apos;m learning Python and web development while exploring areas like artificial intelligence and game development.
-          </motion.p>
-
-          <motion.p {...fadeUp(0.25, 16)} className="font-body text-sm leading-relaxed text-(--text-secondary) body-measure">
-            I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
-          </motion.p>
-
-          {/* Currently Learning / Building line */}
-          <motion.div
-            {...fadeUp(0.3, 16)}
-            className="pt-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 font-mono text-xs text-(--text-secondary)"
-          >
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[0.7rem] bg-(--bg-surface-raised) border border-(--border-subtle) text-(--accent-amber) uppercase tracking-wider w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-(--accent-amber)" />
-              Currently
-            </span>
-            <span>Learning Python &amp; web systems · exploring AI, vision &amp; game mechanics</span>
+          {/* Avatar */}
+          <motion.div {...fadeUp(0.1, 24)} className="shrink-0 flex flex-col items-center gap-3">
+            <div
+              className="w-40 h-40 md:w-52 md:h-52 bg-(--bg-surface) border-2 border-(--accent-main) flex items-center justify-center p-4"
+              style={{ boxShadow: '6px 6px 0px var(--bg-surface), 6px 6px 0px 2px var(--accent-main)' }}
+            >
+              <img
+                src={headImg}
+                alt="Partish"
+                className="w-full h-full object-contain"
+                style={{ imageRendering: 'pixelated' }}
+              />
+            </div>
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-(--text-secondary)">
+              Partish · Developer
+            </p>
           </motion.div>
+
+          {/* Text */}
+          <div
+            className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left p-6 md:p-8 rounded-xl"
+            style={{
+              backgroundColor: 'rgba(20, 28, 24, 0.78)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1.5px solid rgba(52, 211, 153, 0.25)',
+              boxShadow: '4px 4px 0px rgba(52, 211, 153, 0.3)',
+            }}
+          >
+
+            <SectionHeader label="about me" title="Hey, I'm" highlightWord="Partish." />
+
+            <motion.p {...fadeUp(0.25, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+              I&apos;m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I&apos;m learning Python and web development while exploring areas like artificial intelligence and game development.
+            </motion.p>
+
+            <motion.p {...fadeUp(0.3, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+              I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
+            </motion.p>
+
+            {/* Stats */}
+            <motion.div {...fadeUp(0.4, 20)} className="flex gap-8 md:gap-10 pt-2">
+              {[
+                { value: '0+',  label: 'Years exp.'},
+                { value: '10+', label: 'Projects'},
+              ].map(({ value, label }) => (
+                <div key={label} className="flex flex-col gap-1 items-center md:items-start">
+                  <span
+                    className="text-[1.75rem] md:text-[2rem] leading-none text-(--accent-main)"
+                    style={{ fontFamily: '"Boldonse", system-ui', textShadow: 'var(--accent-glow)' }}
+                  >
+                    {value}
+                  </span>
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-(--text-secondary)">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
+          </div>
         </div>
       </div>
     </div>
