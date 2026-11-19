@@ -1,38 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { motion } from 'framer-motion';
-import { fadeUp } from '../../constants/animations';
 
-/**
- * Shared section header with a label line, large title, and an accent underline.
- * @param {string} label - Small uppercase eyebrow text (e.g. "about me")
- * @param {string} title - Main heading prefix (e.g. "Hey, I'm")
- * @param {string} [highlightWord] - Accent-coloured word appended to the title
- */
-export default function SectionHeader({ label, title, highlightWord }) {
+export default function SectionHeader({ label, title, subtitle, className = '' }) {
   return (
-    <div className="flex flex-col gap-3" style={{ marginBottom: '3rem' }}>
-      <motion.p
-        {...fadeUp(0)}
-        className="font-mono text-xs uppercase"
-        style={{ letterSpacing: '0.2em', color: 'var(--accent-secondary)' }}
+    <header className={`flex flex-col gap-2 mb-8 md:mb-12 ${className}`}>
+      {label && (
+        <span className="font-mono text-[0.7rem] uppercase tracking-widest text-(--text-muted)">
+          {label}
+        </span>
+      )}
+      <h2
+        className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-(--text-primary)"
+        style={{ fontFamily: 'var(--font-display)', lineHeight: 1.2 }}
       >
-        / {label}
-      </motion.p>
-      <motion.h2
-        {...fadeUp(0.1)}
-        className="leading-none"
-        style={{ fontFamily: '"Boldonse", system-ui', fontSize: 'clamp(2.25rem, 6vw, 4rem)' }}
-      >
-        {title}{' '}
-        {highlightWord && (
-          <span style={{ color: 'var(--accent-main)' }}>{highlightWord}</span>
-        )}
-      </motion.h2>
-      <motion.div
-        {...fadeUp(0.15)}
-        style={{ width: '3rem', height: '2px', backgroundColor: 'var(--accent-main)' }}
-      />
-    </div>
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="font-body text-sm text-(--text-secondary) max-w-xl">
+          {subtitle}
+        </p>
+      )}
+    </header>
   );
 }

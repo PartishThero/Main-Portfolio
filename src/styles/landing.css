@@ -1,28 +1,25 @@
-/* NOTE: Boldonse is already loaded in index.html — no duplicate import needed */
-
 /* Typewriter cursor */
 @keyframes blink {
   50% { opacity: 0; }
 }
 .cursor-blink {
-  animation: blink 0.8s infinite;
+  animation: blink 0.9s steps(1) infinite;
   display: inline-block;
-  transform: scaleX(0.35);
-  transform-origin: left;
+  color: var(--accent-sage);
+  margin-left: 2px;
 }
 
 /* Name heading */
 .name-big {
-  font-family: "Boldonse", system-ui;
-  font-size: 4.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.25rem, 8vw, 5.5rem);
   line-height: 0.95;
-  white-space: normal;
-  max-width: 5ch;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.8));
+  margin-bottom: 0.5rem;
 }
+
 .highlight {
-  color: var(--accent-main);
-  text-shadow: 0 0 28px rgba(52, 211, 153, 0.4);
+  color: var(--text-primary);
 }

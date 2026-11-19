@@ -13,13 +13,13 @@ function App() {
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
       <Waves
-        lineColor="#10b981"
-        accentColor="#34d399"
-        backgroundColor="#090d0b"
-        spacing={34}
-        lineWidth={1.4}
-        mouseStrength={0.9}
-        mouseRadius={95}
+        lineColor="#2d2422"
+        accentColor="#4e7f68"
+        backgroundColor="#120f0e"
+        spacing={36}
+        lineWidth={1.2}
+        mouseStrength={0.7}
+        mouseRadius={90}
         opacity={0.22}
         style={{
           position: 'fixed',
@@ -31,14 +31,14 @@ function App() {
           pointerEvents: 'none',
         }}
       />
-      {/* Ambient contrast vignette to keep text razor sharp over the animated background */}
+      {/* Ambient contrast mask */}
       <div
         style={{
           position: 'fixed',
           inset: 0,
           zIndex: 0,
           pointerEvents: 'none',
-          background: 'radial-gradient(circle at 50% 50%, rgba(9, 13, 11, 0.45) 0%, rgba(9, 13, 11, 0.85) 100%)',
+          background: 'radial-gradient(circle at 50% 50%, rgba(18, 15, 14, 0.4) 0%, rgba(18, 15, 14, 0.88) 100%)',
         }}
       />
       <CustomCursor />
