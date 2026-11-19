@@ -7,69 +7,48 @@ import { fadeUp } from '../constants/animations';
 export default function About() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center py-20">
-      <div className="section-container flex flex-col md:flex-row items-center gap-10 md:gap-16">
-
-          {/* Avatar */}
-          <motion.div {...fadeUp(0.1, 24)} className="shrink-0 flex flex-col items-center gap-3">
-            <div
-              className="w-40 h-40 md:w-52 md:h-52 bg-(--bg-surface) border-2 border-(--accent-main) flex items-center justify-center p-4"
-              style={{ boxShadow: '6px 6px 0px var(--bg-surface), 6px 6px 0px 2px var(--accent-main)' }}
-            >
-              <img
-                src={headImg}
-                alt="Partish"
-                className="w-full h-full object-contain"
-                style={{ imageRendering: 'pixelated' }}
-              />
-            </div>
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-(--text-secondary)">
-              Partish · Developer
-            </p>
-          </motion.div>
-
-          {/* Text */}
+      <div className="section-container flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16">
+        {/* Avatar Sprite (Static — clean hairline border, no interactive shadow) */}
+        <motion.div {...fadeUp(0.1, 16)} className="shrink-0 flex flex-col items-center gap-3">
           <div
-            className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left p-6 md:p-8 rounded-xl"
-            style={{
-              backgroundColor: 'rgba(20, 28, 24, 0.78)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1.5px solid rgba(52, 211, 153, 0.25)',
-              boxShadow: '4px 4px 0px rgba(52, 211, 153, 0.3)',
-            }}
+            className="w-36 h-36 md:w-48 md:h-48 bg-(--bg-surface) border border-(--border-subtle) rounded-md flex items-center justify-center p-3"
           >
-
-            <SectionHeader label="about me" title="Hey, I'm" highlightWord="Partish." />
-
-            <motion.p {...fadeUp(0.25, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
-              I&apos;m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I&apos;m learning Python and web development while exploring areas like artificial intelligence and game development.
-            </motion.p>
-
-            <motion.p {...fadeUp(0.3, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
-              I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
-            </motion.p>
-
-            {/* Stats */}
-            <motion.div {...fadeUp(0.4, 20)} className="flex gap-8 md:gap-10 pt-2">
-              {[
-                { value: '0+',  label: 'Years exp.'},
-                { value: '10+', label: 'Projects'},
-              ].map(({ value, label }) => (
-                <div key={label} className="flex flex-col gap-1 items-center md:items-start">
-                  <span
-                    className="text-[1.75rem] md:text-[2rem] leading-none text-(--accent-main)"
-                    style={{ fontFamily: '"Boldonse", system-ui', textShadow: 'var(--accent-glow)' }}
-                  >
-                    {value}
-                  </span>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-(--text-secondary)">
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-
+            <img
+              src={headImg}
+              alt="Partish avatar"
+              className="w-full h-full object-contain"
+              style={{ imageRendering: 'pixelated' }}
+            />
           </div>
+          <span className="font-mono text-[0.7rem] uppercase tracking-widest text-(--text-muted)">
+            Partish · Developer
+          </span>
+        </motion.div>
+
+        {/* Text column — open, quiet layout */}
+        <div className="flex-1 flex flex-col gap-6 text-center md:text-left">
+          <SectionHeader label="about" title="Hey, I'm Partish." />
+
+          <motion.p {...fadeUp(0.2, 16)} className="font-body text-base text-(--text-primary) body-measure">
+            I&apos;m a developer who enjoys building focused tools, experimenting with computer vision, and crafting playful digital experiences inspired by pixel worlds.
+          </motion.p>
+
+          <motion.p {...fadeUp(0.25, 16)} className="font-body text-sm leading-relaxed text-(--text-secondary) body-measure">
+            Most of my time goes into learning by building from the ground up — from a Science Fair prize-winning drowsiness detector in Python to orbital mission platforms and audio spatial canvases.
+          </motion.p>
+
+          {/* Currently Learning / Building line (derived strictly from existing text) */}
+          <motion.div
+            {...fadeUp(0.3, 16)}
+            className="pt-2 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 font-mono text-xs text-(--text-secondary)"
+          >
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[0.7rem] bg-(--bg-surface-raised) border border-(--border-subtle) text-(--accent-amber) uppercase tracking-wider w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-(--accent-amber)" />
+              Currently
+            </span>
+            <span>Learning Python &amp; web systems · exploring AI, vision &amp; game mechanics</span>
+          </motion.div>
+        </div>
       </div>
     </div>
   );

@@ -1,24 +1,23 @@
 import React from 'react';
-import { contactInfo } from '../constants/portfolioData';
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="w-full border-t border-(--bg-surface) py-6">
-      <div className="section-container flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[0.75rem] uppercase tracking-wider text-(--text-secondary)">
-        <span className="text-center sm:text-left">© 2026 Partish · All Rights Reserved</span>
-        <div className="flex gap-6">
-          {contactInfo.socials.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-(--text-secondary) hover:text-(--accent-main) transition-colors"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
+    <footer className="w-full border-t border-(--border-subtle) py-8">
+      <div className="section-container flex items-center justify-between font-mono text-[0.75rem] tracking-wider text-(--text-muted)">
+        <span>© {new Date().getFullYear()} Partish</span>
+        <button
+          onClick={scrollToTop}
+          type="button"
+          className="hover:text-(--text-primary) transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:underline cursor-pointer"
+          aria-label="Back to top"
+        >
+          <span>Back to top</span>
+          <span aria-hidden="true">↑</span>
+        </button>
       </div>
     </footer>
   );

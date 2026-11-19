@@ -8,23 +8,33 @@ export default function Skills() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center py-20">
       <div className="section-container flex flex-col gap-10">
+        <SectionHeader
+          label="skills"
+          title="Technical toolkit."
+          subtitle="A text-first inventory of tools and technologies used across my open-source projects."
+        />
 
-        {/* Header */}
-        <SectionHeader label="skills" title="What I" highlightWord="work with." />
-
-        {/* Categories */}
-        <div className="flex flex-col gap-12">
-          {Object.entries(skills).map(([category, items], catIndex) => (
-            <motion.div key={category} {...fadeUp(0.2 + catIndex * 0.1, 20)} className="flex flex-col gap-5">
-              <p className="font-mono text-xs uppercase" style={{ letterSpacing: '0.15em', color: 'var(--accent-secondary)' }}> {category} </p>
-              <div className="flex flex-wrap gap-4 sm:gap-6">
-                {items.map((skill, i) => (
-                  <motion.div key={skill.name} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 + catIndex * 0.1 + i * 0.05 }} className="flex flex-col items-center gap-2 group" >
-                    <div className="flex items-center justify-center font-mono text-lg group-hover:opacity-80 transition-all duration-200" style={{ width: 'clamp(2.75rem, 8vw, 3.5rem)', height: 'clamp(2.75rem, 8vw, 3.5rem)', backgroundColor: 'var(--bg-surface)', border: '1.5px solid var(--accent-main)', borderRadius: '0.35rem', boxShadow: '3px 3px 0px var(--accent-main)', color: 'var(--accent-main)' }} >
-                      <i className={skill.icon}></i>
-                    </div>
-                    <span className="font-mono" style={{ fontSize: '0.6rem', letterSpacing: '0.1em', color: 'var(--text-secondary)' }}> {skill.name} </span>
-                  </motion.div>
+        {/* Grouped text-first list */}
+        <div className="flex flex-col border-t border-(--border-subtle)">
+          {Object.entries(skills).map(([category, items], idx) => (
+            <motion.div
+              key={category}
+              {...fadeUp(0.1 + idx * 0.08, 16)}
+              className="py-6 border-b border-(--border-subtle) flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12"
+            >
+              <div className="w-48 shrink-0">
+                <span className="font-mono text-xs uppercase tracking-wider text-(--text-muted)">
+                  {category}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {items.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="font-mono text-xs px-3 py-1.5 rounded bg-(--bg-surface) border border-(--border-subtle) text-(--text-primary) hover:border-(--accent-sage) transition-colors"
+                  >
+                    {skill.name}
+                  </span>
                 ))}
               </div>
             </motion.div>

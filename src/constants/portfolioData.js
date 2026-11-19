@@ -4,9 +4,10 @@ import projectsIcon from '../assets/heart-pixel.webp';
 import contactIcon from '../assets/naughty-pixel.webp';
 
 export const phrases = [
-  "I build digital experiences.",
-  "FrontEnd Developer.",
-  "Full Stack Developer.",
+  "Building computer vision & web systems.",
+  "1st Prize · School Science Fair for Driver Drowsiness Detector.",
+  "Martian EVA mission platform for NASA Space Apps 2026.",
+  "Crafting quiet interfaces and pixel-art experiments.",
 ];
 
 export const sections = ['home', 'about', 'skills', 'projects', 'contact'];
@@ -29,41 +30,56 @@ export const projects = [
   {
     id: 1,
     title: 'Driver Drowsiness Detector',
+    year: 'Science Fair',
+    highlight: 'Awarded First Prize for real-time safety vision',
     desc: 'Real-time computer vision system that monitors driver facial landmarks and eye aspect ratios via webcam, sounding an alert upon fatigue detection. Awarded 1st Prize at Science Fair.',
     tech: ['Python', 'OpenCV', 'Computer Vision'],
     category: 'personal',
+    featured: true,
     link: 'https://github.com/PartishThero/Driver-Drowsiness',
   },
   {
     id: 2,
-    title: 'The Archivist',
-    desc: 'Aesthetic personal knowledge management and digital workspace featuring custom subject archives, modular clause tracking, active-recall review, and an AI study assistant.',
-    tech: ['React', 'Supabase', 'Tailwind CSS', 'Framer Motion'],
-    category: 'personal',
-    link: 'https://github.com/PartishThero/The-Archivist',
-  },
-  {
-    id: 3,
     title: 'ARES — Mars Mission Planner',
+    year: 'NASA Space Apps 2026',
+    highlight: 'Planetary science & 8-directional A* routing platform',
     desc: 'Planetary science and EVA decision-support platform built for the NASA Space Apps Challenge 2026. Integrates NASA WMTS satellite maps with an 8-directional A* routing engine to navigate Gale Crater.',
     tech: ['React', 'Leaflet', 'A* Algorithm', 'NASA APIs'],
     category: 'professional',
+    featured: true,
     link: 'https://github.com/PartishThero/ares',
+  },
+  {
+    id: 3,
+    title: 'The Archivist',
+    year: 'Personal Work',
+    highlight: 'Aesthetic digital study workplace & clause tracker',
+    desc: 'Personal knowledge management and digital workspace featuring custom subject archives, modular clause tracking, active-recall review, and an AI study assistant.',
+    tech: ['React', 'Supabase', 'Tailwind CSS', 'Framer Motion'],
+    category: 'personal',
+    featured: false,
+    link: 'https://github.com/PartishThero/The-Archivist',
   },
   {
     id: 4,
     title: 'Laya',
+    year: 'Personal Work',
+    highlight: 'Infinite spatial canvas with range-based audio streaming',
     desc: 'Tactile spatial music exploration platform presenting vinyl records on an infinite 2D canvas with pan-and-zoom controls, crate organization, and range-based HTTP 206 audio streaming.',
     tech: ['React', 'Node.js', 'Express', 'MongoDB'],
     category: 'personal',
+    featured: false,
     link: 'https://github.com/PartishThero/laya',
   },
   {
     id: 5,
     title: 'Orators Society',
+    year: 'Web Experience',
+    highlight: 'Kinetic typography with WebGL & Lenis smooth scrolling',
     desc: 'Interactive web experience for The Orators Society featuring fluid kinetic typography, WebGL/OGL shaders, Lenis smooth scrolling, and Supabase-backed event archives.',
     tech: ['React', 'WebGL', 'GSAP', 'Lenis', 'Supabase'],
     category: 'professional',
+    featured: false,
     link: 'https://github.com/PartishThero/orators-society',
   },
 ];
@@ -71,28 +87,30 @@ export const projects = [
 export const filters = ['All', 'Professional', 'Personal'];
 
 export const skills = {
-  Frontend: [
-    { name: 'React', icon: 'fa-brands fa-react' },
-    { name: 'Framer Motion', icon: 'fa-solid fa-wand-magic-sparkles' },
-    { name: 'Tailwind CSS', icon: 'fa-solid fa-wind' },
-    { name: 'HTML / CSS', icon: 'fa-solid fa-code' },
+  'Interface & Frontend': [
+    { name: 'React' },
+    { name: 'Tailwind CSS' },
+    { name: 'Framer Motion' },
+    { name: 'HTML5 / CSS3' },
   ],
-  Backend: [
-    { name: 'Node.js', icon: 'fa-brands fa-node-js' },
-    { name: 'Express', icon: 'fa-solid fa-server' },
-    { name: 'MongoDB', icon: 'fa-solid fa-database' },
-    { name: 'REST APIs', icon: 'fa-solid fa-network-wired' },
-  ],
-  'Tools & Frameworks': [
-    { name: 'Git / GitHub', icon: 'fa-brands fa-github' },
-    { name: 'Vite', icon: 'fa-solid fa-bolt' },
-    { name: 'Supabase', icon: 'fa-solid fa-bolt-lightning' },
-    { name: 'Figma', icon: 'fa-brands fa-figma' },
+  'Systems & Backend': [
+    { name: 'Node.js' },
+    { name: 'Express' },
+    { name: 'MongoDB' },
+    { name: 'Supabase' },
+    { name: 'REST APIs' },
   ],
   Languages: [
-    { name: 'JavaScript', icon: 'fa-brands fa-square-js' },
-    { name: 'Python', icon: 'fa-brands fa-python' },
-    { name: 'Java', icon: 'fa-brands fa-java' },
+    { name: 'Python' },
+    { name: 'JavaScript' },
+    { name: 'Java' },
+  ],
+  'Creative & Vision': [
+    { name: 'OpenCV' },
+    { name: 'Computer Vision' },
+    { name: 'WebGL / Shaders' },
+    { name: 'Leaflet' },
+    { name: 'Git & Vite' },
   ],
 };
 
