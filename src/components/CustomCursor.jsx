@@ -6,7 +6,7 @@ const isTouchDevice = () =>
 const CustomCursor = () => {
   const isTouch = isTouchDevice();
   const wrapperRef = useRef(null);
-  const [hoverType, setHoverType] = useState('default'); // 'default' | 'hoverable' | 'text'
+  const [hoverType, setHoverType] = useState('default');
   const [isClicked, setIsClicked] = useState(false);
   const currentHoverRef = useRef('default');
 
@@ -56,28 +56,30 @@ const CustomCursor = () => {
 
   if (isTouch) return null;
 
-  // Derive inner visual styles based on hover state
   let width = 16;
   let height = 16;
   let borderRadius = '50%';
-  let opacity = 0.9;
+  let opacity = 0.95;
   let scale = isClicked ? 0.8 : 1;
-  let bg = 'var(--accent-main)';
-  let border = 'none';
+  let bg = 'var(--primary)';
+  let border = '1px solid var(--ink)';
 
   if (hoverType === 'hoverable') {
     width = 38;
     height = 38;
     borderRadius = '50%';
-    opacity = 0.35;
+    opacity = 0.4;
     scale = isClicked ? 1.1 : 1.3;
-    border = '1.5px solid var(--accent-main)';
+    bg = 'var(--tint)';
+    border = '1.5px solid var(--ink)';
   } else if (hoverType === 'text') {
     width = 3;
     height = 20;
     borderRadius = '2px';
     opacity = 1;
     scale = 1;
+    bg = 'var(--ink)';
+    border = 'none';
   }
 
   return (
@@ -101,7 +103,7 @@ const CustomCursor = () => {
           opacity,
           backgroundColor: bg,
           border,
-          boxShadow: hoverType === 'hoverable' ? '0 0 12px var(--accent-main)' : '0 0 8px var(--accent-main)',
+          boxShadow: hoverType === 'hoverable' ? '2px 2px 0px var(--shadow)' : '1px 1px 0px var(--shadow)',
           transform: `translate(-50%, -50%) scale(${scale})`,
           transition: 'width 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.12s ease-out, border-radius 0.15s ease, opacity 0.15s ease, background-color 0.15s ease',
         }}

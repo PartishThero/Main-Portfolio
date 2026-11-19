@@ -313,17 +313,22 @@ const Waves = ({
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
     const colors = new Map();
     const parse = value => {
-      if (colors.has(value)) return colors.get(value);
+      let resolved = value;
+      if (typeof value === 'string' && value.includes('var(') && container) {
+        container.style.color = value;
+        resolved = getComputedStyle(container).color || value;
+      }
+      if (colors.has(resolved)) return colors.get(resolved);
       let rgb = [1, 1, 1];
       if (probe) {
         probe.clearRect(0, 0, 1, 1);
         probe.fillStyle = '#ffffff';
-        probe.fillStyle = value;
+        probe.fillStyle = resolved;
         probe.fillRect(0, 0, 1, 1);
         const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
         rgb = [r / 255, g / 255, b / 255];
       }
-      colors.set(value, rgb);
+      colors.set(resolved, rgb);
       return rgb;
     };
     const ink = rgb => {

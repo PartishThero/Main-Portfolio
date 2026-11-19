@@ -7,8 +7,8 @@ export default function Footer() {
       className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[0.7rem] uppercase"
       style={{
         padding: '1.5rem clamp(1.25rem, 14vw, 14vw)',
-        borderTop: '1px solid var(--bg-surface)',
-        color: 'var(--text-secondary)',
+        borderTop: '1.5px solid var(--tint-border)',
+        color: 'var(--muted)',
         letterSpacing: '0.12em',
       }}
     >
@@ -16,9 +16,9 @@ export default function Footer() {
       <div className="flex gap-6">
         {contactInfo.socials.map(({ label, href }) => (
           <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-            style={{ color: 'var(--text-secondary)', transition: 'color 0.15s ease' }}
-            onMouseEnter={e => e.currentTarget.style.color = 'var(--accent-main)'}
-            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
+            style={{ color: 'var(--muted)', transition: 'color 0.15s ease' }}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--primary)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}
           >
             {label}
           </a>

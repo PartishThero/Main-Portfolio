@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import headImg from '../assets/Sleepy pixel.webp';
+import headImg from '../assets/sleepy-pixel.webp';
 import useIsMobile from '../hooks/useIsMobile';
 import { sections, pageConfig, navLinks } from '../constants/portfolioData';
 
@@ -20,7 +20,6 @@ export default function Navbar() {
   const isLanding = activeSection === 'home';
   const isMobile = useIsMobile();
 
-  /* ── Intersection Observer — detects which section is visible ── */
   useEffect(() => {
     const observers = [];
 
@@ -41,7 +40,6 @@ export default function Navbar() {
     return () => observers.forEach(o => o.disconnect());
   }, []);
 
-  /* ── Trigger expression + bubble when section changes ── */
   useEffect(() => {
     const config = pageConfig[activeSection];
 
@@ -50,7 +48,6 @@ export default function Navbar() {
     }
 
     if (!config) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentIcon(headImg);
       setShowBubble(false);
       return;
@@ -83,7 +80,6 @@ export default function Navbar() {
           : '0 clamp(1.5rem, 3vw, 3rem)' 
       }}
     >
-      {/* LEFT: avatar + bubble */}
       {!isLanding ? (
         <div className="flex items-center gap-3">
           <button
@@ -106,21 +102,21 @@ export default function Navbar() {
                 transition={{ duration: 0.25 }}
                 className="relative font-mono text-xs"
                 style={{
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1.5px solid var(--accent-main)',
+                  backgroundColor: 'var(--surface)',
+                  border: '1.5px solid var(--ink)',
                   borderRadius: '0.5rem',
                   padding: '0.5rem 0.9rem',
-                  color: 'var(--text-primary)',
+                  color: 'var(--ink)',
                   whiteSpace: 'nowrap',
                   letterSpacing: '0.04em',
-                  boxShadow: '3px 3px 0px var(--accent-main)',
+                  boxShadow: '3px 3px 0px var(--shadow)',
                 }}
               >
                 <span style={{
                   position: 'absolute', left: '-7px', top: '50%',
                   transform: 'translateY(-50%)', width: 0, height: 0,
                   borderTop: '6px solid transparent', borderBottom: '6px solid transparent',
-                  borderRight: '7px solid var(--accent-main)',
+                  borderRight: '7px solid var(--ink)',
                 }} />
                 {bubbleMsg}
               </motion.div>
@@ -131,8 +127,7 @@ export default function Navbar() {
         <div style={{ width: '48px' }} />
       )}
 
-      {/* RIGHT: nav links */}
-      <div className="flex gap-8 font-mono text-sm tracking-widest" style={{ color: 'var(--text-secondary)' }}>
+      <div className="flex gap-8 font-mono text-sm tracking-widest" style={{ color: 'var(--muted)' }}>
         {navLinks.map(({ id, label }) => (
           <button
             key={id}
@@ -140,11 +135,13 @@ export default function Navbar() {
             className="font-mono text-sm uppercase transition-colors duration-200"
             style={{
               letterSpacing: '0.12em',
-              color: activeSection === id ? 'var(--accent-main)' : 'var(--text-secondary)',
+              color: activeSection === id ? 'var(--primary)' : 'var(--muted)',
               background: 'none',
               border: 'none',
               padding: 0,
             }}
+            onMouseEnter={e => { if (activeSection !== id) e.currentTarget.style.color = 'var(--ink)'; }}
+            onMouseLeave={e => { if (activeSection !== id) e.currentTarget.style.color = 'var(--muted)'; }}
           >
             {label}
           </button>

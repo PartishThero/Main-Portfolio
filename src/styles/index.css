@@ -1,16 +1,7 @@
 @import "tailwindcss";
+@import "./theme.css";
 @import "./landing.css";
 
-:root {
-  --bg-primary: #090d0b;
-  --bg-surface: #141c18;
-  --text-primary: #f0fdf4;
-  --text-secondary: #a3b8b0;
-  --accent-main: #34d399;
-  --accent-secondary: #5eead4;
-  --accent-tertiary: #10b981;
-  --accent-glow: 0 0 20px rgba(52, 211, 153, 0.3);
-}
 * {
   margin: 0;
   padding: 0;
@@ -54,7 +45,6 @@ body {
   background-color: var(--bg-primary);
 }
 
-/* ── On touch devices: default cursor ── */
 @media (hover: none) and (pointer: coarse) {
   * {
     cursor: auto !important;

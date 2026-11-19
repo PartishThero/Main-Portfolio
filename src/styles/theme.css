@@ -1,0 +1,25 @@
+:root {
+  --bg: #EAE5D8;
+  --surface: #F8F6EF;
+  --ink: #242B20;
+  --muted: #636A5B;
+  --shadow: #262A18;
+  --primary: #6F8C5C;
+  --primary-hover: #647F52;
+  --primary-active: #587247;
+  --tint: #DFE4D0;
+  --tint-border: #A2AD86;
+
+  --wave-line: var(--tint-border);
+  --wave-accent: var(--primary);
+  --cursor: var(--primary);
+
+  --bg-primary: var(--bg);
+  --bg-surface: var(--surface);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --accent-main: var(--primary);
+  --accent-secondary: var(--primary-hover);
+  --accent-tertiary: var(--primary-active);
+  --accent-glow: none;
+}

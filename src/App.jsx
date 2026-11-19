@@ -11,16 +11,16 @@ import Waves from './components/Waves.jsx';
 
 function App() {
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', backgroundColor: 'var(--bg)' }}>
       <Waves
-        lineColor="#10b981"
-        accentColor="#34d399"
-        backgroundColor="#090d0b"
-        spacing={34}
-        lineWidth={1.4}
-        mouseStrength={0.9}
-        mouseRadius={95}
-        opacity={0.22}
+        lineColor="var(--wave-line)"
+        accentColor="var(--wave-accent)"
+        backgroundColor="var(--bg)"
+        spacing={32}
+        lineWidth={1.2}
+        mouseStrength={1.1}
+        mouseRadius={90}
+        opacity={0.34}
         style={{
           position: 'fixed',
           top: 0,
@@ -31,14 +31,14 @@ function App() {
           pointerEvents: 'none',
         }}
       />
-      {/* Ambient contrast vignette to keep text razor sharp over the animated background */}
       <div
         style={{
           position: 'fixed',
           inset: 0,
           zIndex: 0,
           pointerEvents: 'none',
-          background: 'radial-gradient(circle at 50% 50%, rgba(9, 13, 11, 0.45) 0%, rgba(9, 13, 11, 0.85) 100%)',
+          background: 'radial-gradient(circle at 50% 50%, transparent 0%, var(--bg) 100%)',
+          opacity: 0.45,
         }}
       />
       <CustomCursor />

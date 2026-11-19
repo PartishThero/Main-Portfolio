@@ -1,7 +1,7 @@
-import aboutIcon from '../assets/Question Pixel.webp';
-import skillsIcon from '../assets/Crazy Pixel.webp';
-import projectsIcon from '../assets/heart pixel.webp';
-import contactIcon from '../assets/Naughty Pixel.webp';
+import aboutIcon from '../assets/question-pixel.webp';
+import skillsIcon from '../assets/crazy-pixel.webp';
+import projectsIcon from '../assets/heart-pixel.webp';
+import contactIcon from '../assets/naughty-pixel.webp';
 
 export const phrases = [
   "I build digital experiences.",

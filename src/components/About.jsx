@@ -8,15 +8,11 @@ export default function About() {
   return (
     <div className="min-h-screen bg-transparent text-(--text-primary) flex flex-col">
       <div className="flex-1 flex items-center justify-center px-10 sm:px-12 md:px-24 pt-28 pb-16">
-
-        {/* Stack on mobile, row on md+ */}
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl p-2">
-
-          {/* Avatar */}
           <motion.div {...fadeUp(0.1, 24)} className="shrink-0 flex flex-col items-center gap-3">
             <div
-              className="w-40 h-40 md:w-52 md:h-52 bg-(--bg-surface) border-2 border-(--accent-main) flex items-center justify-center p-4"
-              style={{ boxShadow: '6px 6px 0px var(--bg-surface), 6px 6px 0px 2px var(--accent-main)' }}
+              className="w-40 h-40 md:w-52 md:h-52 bg-[var(--surface)] border-2 border-[var(--ink)] flex items-center justify-center p-4 rounded-lg"
+              style={{ boxShadow: '6px 6px 0px var(--shadow)' }}
             >
               <img
                 src={headImg}
@@ -25,34 +21,30 @@ export default function About() {
                 style={{ imageRendering: 'pixelated' }}
               />
             </div>
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-(--text-secondary)">
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.15em] text-[var(--muted)]">
               Partish · Developer
             </p>
           </motion.div>
 
-          {/* Text */}
           <div
-            className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left p-6 md:p-8 rounded-xl"
+            className="flex flex-col gap-6 flex-1 items-center md:items-start text-center md:text-left p-6 md:p-8"
             style={{
-              backgroundColor: 'rgba(20, 28, 24, 0.78)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1.5px solid rgba(52, 211, 153, 0.25)',
-              boxShadow: '4px 4px 0px rgba(52, 211, 153, 0.3)',
+              backgroundColor: 'var(--surface)',
+              border: '1.5px solid var(--ink)',
+              boxShadow: '4px 4px 0px var(--shadow)',
+              borderRadius: '0.5rem',
             }}
           >
-
             <SectionHeader label="about me" title="Hey, I'm" highlightWord="Partish." />
 
-            <motion.p {...fadeUp(0.25, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+            <motion.p {...fadeUp(0.25, 20)} className="font-mono text-sm leading-[1.9] text-[var(--muted)] max-w-lg">
               I&apos;m a beginner programmer who enjoys building small projects and experimenting with new ideas. Right now I&apos;m learning Python and web development while exploring areas like artificial intelligence and game development.
             </motion.p>
 
-            <motion.p {...fadeUp(0.3, 20)} className="font-mono text-sm leading-[1.9] text-(--text-secondary) max-w-lg">
+            <motion.p {...fadeUp(0.3, 20)} className="font-mono text-sm leading-[1.9] text-[var(--muted)] max-w-lg">
               I enjoy creating things that are both functional and fun to use — from simple tools to playful interfaces inspired by pixel games. Most of my time goes into learning by building, experimenting with projects, and improving with every iteration.
             </motion.p>
 
-            {/* Stats */}
             <motion.div {...fadeUp(0.4, 20)} className="flex gap-8 md:gap-10 pt-2">
               {[
                 { value: '0+',  label: 'Years exp.'},
@@ -60,18 +52,17 @@ export default function About() {
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col gap-1 items-center md:items-start">
                   <span
-                    className="text-[1.75rem] md:text-[2rem] leading-none text-(--accent-main)"
-                    style={{ fontFamily: '"Boldonse", system-ui', textShadow: 'var(--accent-glow)' }}
+                    className="text-[1.75rem] md:text-[2rem] leading-none text-[var(--primary)]"
+                    style={{ fontFamily: '"Boldonse", system-ui' }}
                   >
                     {value}
                   </span>
-                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-(--text-secondary)">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-[var(--muted)]">
                     {label}
                   </span>
                 </div>
               ))}
             </motion.div>
-
           </div>
         </div>
       </div>

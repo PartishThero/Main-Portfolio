@@ -22,7 +22,6 @@ export default function Landing() {
   
   const isMobile = useIsMobile();
 
-  /* ── Walk frames ── */
   useEffect(() => {
     if (stage !== 'walking') return;
     const id = setInterval(() =>
@@ -30,7 +29,6 @@ export default function Landing() {
     return () => clearInterval(id);
   }, [stage]);
 
-  /* ── Idle alternation every 2s ── */
   useEffect(() => {
     if (stage !== 'typing') return;
     const id = setInterval(() =>
@@ -38,7 +36,6 @@ export default function Landing() {
     return () => clearInterval(id);
   }, [stage]);
 
-  /* ── Typewriter ── */
   useEffect(() => {
     if (stage !== 'typing') return;
     const phrase = phrases[loop % phrases.length];
@@ -57,7 +54,6 @@ export default function Landing() {
     return () => clearTimeout(id);
   }, [text, isDeleting, loop, stage]);
 
-  /* ── MOBILE layout ── */
   if (isMobile) {
     return (
       <div
@@ -75,7 +71,6 @@ export default function Landing() {
           paddingBottom: '2rem',
         }}
       >
-        {/* Character walks from left, stops center */}
         <motion.div
           style={{ width: '8rem', height: '16rem', flexShrink: 0 }}
           initial={{ x: '-100vw' }}
@@ -91,7 +86,6 @@ export default function Landing() {
           />
         </motion.div>
 
-        {/* Text below */}
         <div style={{ textAlign: 'center' }}>
           {stage === 'typing' && (
             <motion.div
@@ -100,7 +94,7 @@ export default function Landing() {
               transition={{ duration: 0.4 }}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}
             >
-              <p className="font-mono text-sm" style={{ color: 'var(--accent-secondary)', letterSpacing: '0.05em' }}>
+              <p className="font-mono text-sm" style={{ color: 'var(--primary)', letterSpacing: '0.05em' }}>
                 Hello! I am
               </p>
               <h1 className="name-big" style={{ textAlign: 'center', fontSize: '3rem', maxWidth: 'none' }}>
@@ -111,15 +105,15 @@ export default function Landing() {
                 style={{
                   fontSize: '0.75rem',
                   letterSpacing: '0.1em',
-                  color: 'var(--text-secondary)',
+                  color: 'var(--muted)',
                   gap: '2px',
-                  borderLeft: '2px solid var(--accent-main)',
+                  borderLeft: '2px solid var(--primary)',
                   paddingLeft: '0.5rem',
                   marginTop: '0.5rem',
                 }}
               >
                 <span>{text}</span>
-                <span className="cursor-blink" style={{ color: 'var(--accent-main)' }}>█</span>
+                <span className="cursor-blink" style={{ color: 'var(--primary)' }}>█</span>
               </div>
             </motion.div>
           )}
@@ -128,7 +122,6 @@ export default function Landing() {
     );
   }
 
-  /* ── DESKTOP layout ── */
   return (
     <div
       className="flex items-center justify-start"
@@ -166,7 +159,7 @@ export default function Landing() {
             >
               <p
                 className="font-mono text-base leading-none"
-                style={{ color: 'var(--accent-secondary)', marginBottom: '1.5rem' }}
+                style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}
               >
                 Hello! I am
               </p>
@@ -178,15 +171,15 @@ export default function Landing() {
                 style={{
                   fontSize: '0.85rem',
                   letterSpacing: '0.15em',
-                  color: 'var(--text-secondary)',
+                  color: 'var(--muted)',
                   gap: '2px',
-                  borderLeft: '2px solid var(--accent-main)',
+                  borderLeft: '2px solid var(--primary)',
                   paddingLeft: '0.6rem',
                   marginTop: '3rem',
                 }}
               >
                 <span>{text}</span>
-                <span className="cursor-blink" style={{ color: 'var(--accent-main)' }}>█</span>
+                <span className="cursor-blink" style={{ color: 'var(--primary)' }}>█</span>
               </div>
             </motion.div>
           )}
