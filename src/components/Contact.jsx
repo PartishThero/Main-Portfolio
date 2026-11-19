@@ -57,7 +57,8 @@ export default function Contact() {
   const buttonProps = { onMouseEnter: handleButtonEnter, onMouseLeave: handleButtonLeave, onMouseDown: handleButtonDown, onMouseUp: handleButtonUp };
 
   return (
-    <div className="min-h-screen flex flex-col" style={maindivStyle}>
+    <div className="min-h-screen w-full flex items-center justify-center py-20">
+      <div className="section-container flex flex-col">
 
       {/* Header */}
       <SectionHeader label="contact" title="Start a" highlightWord="quest?" />
@@ -149,5 +150,6 @@ export default function Contact() {
 
       </div>
     </div>
+  </div>
   );
 }

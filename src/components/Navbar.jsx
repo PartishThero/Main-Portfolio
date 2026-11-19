@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import headImg from '../assets/Sleepy pixel.webp';
-import useIsMobile from '../hooks/useIsMobile';
+import headImg from '../assets/sleepy-pixel.webp';
 import { sections, pageConfig, navLinks } from '../constants/portfolioData';
 
 const scrollTo = (id) => {
@@ -15,30 +14,35 @@ export default function Navbar() {
   const [showBubble, setShowBubble] = useState(false);
   const [currentIcon, setCurrentIcon] = useState(headImg);
   const [bubbleMsg, setBubbleMsg] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const bubbleTimerRef = useRef(null);
 
   const isLanding = activeSection === 'home';
-  const isMobile = useIsMobile();
 
-  /* ── Intersection Observer — detects which section is visible ── */
+  /* ── Intersection Observer: reliable across tall & short sections ── */
   useEffect(() => {
-    const observers = [];
+    const mainScroll = document.getElementById('main-scroll');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      {
+        root: mainScroll || null,
+        threshold: [0.15, 0.35, 0.6],
+        rootMargin: '-15% 0px -40% 0px',
+      }
+    );
 
-    sections.forEach(id => {
+    sections.forEach((id) => {
       const el = document.getElementById(id);
-      if (!el) return;
-
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        { threshold: 0.5 }
-      );
-      obs.observe(el);
-      observers.push(obs);
+      if (el) observer.observe(el);
     });
 
-    return () => observers.forEach(o => o.disconnect());
+    return () => observer.disconnect();
   }, []);
 
   /* ── Trigger expression + bubble when section changes ── */
@@ -50,7 +54,6 @@ export default function Navbar() {
     }
 
     if (!config) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentIcon(headImg);
       setShowBubble(false);
       return;
@@ -63,93 +66,144 @@ export default function Navbar() {
     bubbleTimerRef.current = setTimeout(() => {
       setShowBubble(false);
       setCurrentIcon(headImg);
-    }, 5000);
+    }, 4500);
 
     return () => {
-      if (bubbleTimerRef.current) {
-        clearTimeout(bubbleTimerRef.current);
-      }
+      if (bubbleTimerRef.current) clearTimeout(bubbleTimerRef.current);
     };
   }, [activeSection]);
 
-  if (isMobile) return null;
+  const handleNavClick = (id) => {
+    setMobileMenuOpen(false);
+    scrollTo(id);
+  };
 
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 flex items-center justify-between bg-transparent transition-all duration-300"
-      style={{ 
-        padding: isLanding 
-          ? 'clamp(1rem, 2vw, 2rem) clamp(1.5rem, 3vw, 3rem)' 
-          : '0 clamp(1.5rem, 3vw, 3rem)' 
-      }}
-    >
-      {/* LEFT: avatar + bubble */}
-      {!isLanding ? (
-        <div className="flex items-center gap-3">
+    <header className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+      <div className="section-container flex items-center justify-between py-3 md:py-5">
+        {/* LEFT: mascot avatar + speech bubble */}
+        <div className="pointer-events-auto flex items-center gap-3">
           <button
-            className="no-cursor hover:scale-110 transition-transform shrink-0"
             onClick={() => scrollTo('home')}
+            aria-label="Home"
+            className="group flex items-center justify-center p-1 rounded transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
           >
             <img
               src={currentIcon}
-              alt="Home"
-              style={{ width: '100px', height: '100px', imageRendering: 'pixelated' }}
+              alt="Mascot Avatar"
+              className="w-10 h-10 md:w-14 md:h-14 transition-transform group-hover:scale-105"
+              style={{ imageRendering: 'pixelated' }}
             />
           </button>
 
           <AnimatePresence>
-            {showBubble && (
+            {showBubble && !isLanding && (
               <motion.div
                 initial={{ opacity: 0, x: -8, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -8, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                className="relative font-mono text-xs"
+                transition={{ duration: 0.18 }}
+                className="relative font-mono text-[0.7rem] md:text-xs max-w-[200px] sm:max-w-xs md:max-w-sm"
                 style={{
                   backgroundColor: 'var(--bg-surface)',
                   border: '1.5px solid var(--accent-main)',
-                  borderRadius: '0.5rem',
-                  padding: '0.5rem 0.9rem',
+                  borderRadius: '0.375rem',
+                  padding: '0.4rem 0.75rem',
                   color: 'var(--text-primary)',
-                  whiteSpace: 'nowrap',
-                  letterSpacing: '0.04em',
-                  boxShadow: '3px 3px 0px var(--accent-main)',
+                  boxShadow: '2px 2px 0px var(--accent-main)',
                 }}
               >
-                <span style={{
-                  position: 'absolute', left: '-7px', top: '50%',
-                  transform: 'translateY(-50%)', width: 0, height: 0,
-                  borderTop: '6px solid transparent', borderBottom: '6px solid transparent',
-                  borderRight: '7px solid var(--accent-main)',
-                }} />
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: '-6px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    width: 0,
+                    height: 0,
+                    borderTop: '5px solid transparent',
+                    borderBottom: '5px solid transparent',
+                    borderRight: '6px solid var(--accent-main)',
+                  }}
+                />
                 {bubbleMsg}
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-      ) : (
-        <div style={{ width: '48px' }} />
-      )}
 
-      {/* RIGHT: nav links */}
-      <div className="flex gap-8 font-mono text-sm tracking-widest" style={{ color: 'var(--text-secondary)' }}>
-        {navLinks.map(({ id, label }) => (
+        {/* RIGHT (Desktop): nav links */}
+        <nav aria-label="Main Navigation" className="pointer-events-auto hidden md:flex items-center gap-7 font-mono text-xs uppercase tracking-widest">
+          {navLinks.map(({ id, label }) => {
+            const isActive = activeSection === id;
+            return (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                aria-current={isActive ? 'page' : undefined}
+                className="transition-colors duration-150 py-1 focus-visible:outline-2 focus-visible:outline-(--accent-main)"
+                style={{
+                  color: isActive ? 'var(--accent-main)' : 'var(--text-secondary)',
+                  borderBottom: isActive ? '1.5px solid var(--accent-main)' : '1.5px solid transparent',
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* RIGHT (Mobile): hamburger toggle */}
+        <div className="pointer-events-auto flex md:hidden">
           <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            className="font-mono text-sm uppercase transition-colors duration-200"
-            style={{
-              letterSpacing: '0.12em',
-              color: activeSection === id ? 'var(--accent-main)' : 'var(--text-secondary)',
-              background: 'none',
-              border: 'none',
-              padding: 0,
-            }}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded text-(--text-primary) border border-(--accent-main)/40 bg-(--bg-surface)/80 backdrop-blur-md active:scale-95"
           >
-            {label}
+            <svg className="w-5 h-5 fill-current" viewBox="0 0 20 20">
+              {mobileMenuOpen ? (
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              ) : (
+                <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+              )}
+            </svg>
           </button>
-        ))}
+        </div>
       </div>
-    </nav>
+
+      {/* Mobile Drawer Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.nav
+            aria-label="Mobile Navigation"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.15 }}
+            className="pointer-events-auto md:hidden mx-4 mt-1 p-4 rounded-lg bg-(--bg-surface) border border-(--accent-main) shadow-xl flex flex-col gap-3 font-mono text-xs uppercase tracking-wider"
+          >
+            {navLinks.map(({ id, label }) => {
+              const isActive = activeSection === id;
+              return (
+                <button
+                  key={id}
+                  onClick={() => handleNavClick(id)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className="min-h-[44px] flex items-center justify-between px-3 rounded text-left transition-colors"
+                  style={{
+                    backgroundColor: isActive ? 'rgba(52, 211, 153, 0.12)' : 'transparent',
+                    color: isActive ? 'var(--accent-main)' : 'var(--text-primary)',
+                  }}
+                >
+                  <span>{label}</span>
+                  {isActive && <span className="text-[10px] text-(--accent-main)">●</span>}
+                </button>
+              );
+            })}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

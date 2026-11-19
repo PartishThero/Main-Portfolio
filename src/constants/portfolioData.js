@@ -1,7 +1,7 @@
-import aboutIcon from '../assets/Question Pixel.webp';
-import skillsIcon from '../assets/Crazy Pixel.webp';
-import projectsIcon from '../assets/heart pixel.webp';
-import contactIcon from '../assets/Naughty Pixel.webp';
+import aboutIcon from '../assets/question-pixel.webp';
+import skillsIcon from '../assets/crazy-pixel.webp';
+import projectsIcon from '../assets/heart-pixel.webp';
+import contactIcon from '../assets/naughty-pixel.webp';
 
 export const phrases = [
   "I build digital experiences.",
@@ -73,17 +73,20 @@ export const filters = ['All', 'Professional', 'Personal'];
 export const skills = {
   Frontend: [
     { name: 'React', icon: 'fa-brands fa-react' },
-    { name: 'Framer', icon: 'fa-brands fa-flutter' },
-    { name: 'HTML', icon: 'fa-solid fa-code' },
-    { name: 'CSS', icon: 'fa-brands fa-css3' },
-    { name: 'Tailwind', icon: 'fa-solid fa-wind' },
+    { name: 'Framer Motion', icon: 'fa-solid fa-wand-magic-sparkles' },
+    { name: 'Tailwind CSS', icon: 'fa-solid fa-wind' },
+    { name: 'HTML / CSS', icon: 'fa-solid fa-code' },
   ],
   Backend: [
-    { name: 'REST APIs', icon: 'fa-brands fa-quinscape' },
+    { name: 'Node.js', icon: 'fa-brands fa-node-js' },
+    { name: 'Express', icon: 'fa-solid fa-server' },
+    { name: 'MongoDB', icon: 'fa-solid fa-database' },
+    { name: 'REST APIs', icon: 'fa-solid fa-network-wired' },
   ],
-  'Tools & DevOps': [
-    { name: 'Git', icon: 'fa-brands fa-github' },
-    { name: 'Vite', icon: 'fa-brands fa-vimeo-v' },
+  'Tools & Frameworks': [
+    { name: 'Git / GitHub', icon: 'fa-brands fa-github' },
+    { name: 'Vite', icon: 'fa-solid fa-bolt' },
+    { name: 'Supabase', icon: 'fa-solid fa-bolt-lightning' },
     { name: 'Figma', icon: 'fa-brands fa-figma' },
   ],
   Languages: [

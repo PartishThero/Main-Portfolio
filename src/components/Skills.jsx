@@ -6,8 +6,8 @@ import { skills } from '../constants/portfolioData';
 
 export default function Skills() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: 'transparent', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '4rem',}}>
-      <div className="flex flex-col gap-12 w-full" style={{ maxWidth: '680px', padding: '0 clamp(1.25rem, 6vw, 1.5rem)' }} >
+    <div className="min-h-screen w-full flex items-center justify-center py-20">
+      <div className="section-container flex flex-col gap-10">
 
         {/* Header */}
         <SectionHeader label="skills" title="What I" highlightWord="work with." />

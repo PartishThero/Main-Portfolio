@@ -51,17 +51,17 @@ function App() {
           height: '100vh',
           width: '100vw',
           overflowY: 'scroll',
-          scrollSnapType: 'y mandatory',
+          scrollSnapType: 'y proximity',
           scrollBehavior: 'smooth',
           backgroundColor: 'transparent',
         }}
         id="main-scroll"
       >
-        <section id="home"     style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}><Landing /></section>
-        <section id="about"    style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}><About /></section>
-        <section id="skills"   style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}><Skills /></section>
-        <section id="projects" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}><Projects /></section>
-        <section id="contact"  style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <section id="home"     style={{ scrollSnapAlign: 'start' }}><Landing /></section>
+        <section id="about"    style={{ scrollSnapAlign: 'start' }}><About /></section>
+        <section id="skills"   style={{ scrollSnapAlign: 'start' }}><Skills /></section>
+        <section id="projects" style={{ scrollSnapAlign: 'start' }}><Projects /></section>
+        <section id="contact"  style={{ scrollSnapAlign: 'start' }}>
           <Contact />
           <Footer />
         </section>

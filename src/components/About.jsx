@@ -6,11 +6,8 @@ import { fadeUp } from '../constants/animations';
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-transparent text-(--text-primary) flex flex-col">
-      <div className="flex-1 flex items-center justify-center px-10 sm:px-12 md:px-24 pt-28 pb-16">
-
-        {/* Stack on mobile, row on md+ */}
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20 w-full max-w-5xl p-2">
+    <div className="min-h-screen w-full flex items-center justify-center py-20">
+      <div className="section-container flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
           {/* Avatar */}
           <motion.div {...fadeUp(0.1, 24)} className="shrink-0 flex flex-col items-center gap-3">
@@ -73,7 +70,6 @@ export default function About() {
             </motion.div>
 
           </div>
-        </div>
       </div>
     </div>
   );

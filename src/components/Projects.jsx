@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import emptyImg from '../assets/surprised pixe.webp';
+import emptyImg from '../assets/surprised-pixel.webp';
 import SectionHeader from './common/SectionHeader';
 import { fadeUp } from '../constants/animations';
 import { projects, filters } from '../constants/portfolioData';
@@ -19,30 +19,28 @@ const layoutStyle = {
   transition: 'box-shadow 0.15s ease',
   minHeight: '220px',
 };
-const containerStyle = { backgroundColor: 'transparent', color: 'var(--text-primary)', paddingTop: '7rem', paddingBottom: '8rem', paddingLeft: 'clamp(1.25rem,14vw,14vw)', paddingRight: 'clamp(1.25rem,14vw,14vw)' };
-
-/** Returns button styles for a filter chip; isActive drives the filled/outlined variant. */
 const filterButtonStyle = (isActive) => ({
   letterSpacing: '0.12em',
-  padding: '0.6rem 1.5rem',
-  borderRadius: '0.5rem',
-  transition: 'all 0.12s ease',
+  padding: '0.5rem 1.25rem',
+  borderRadius: '0.375rem',
+  transition: 'all 0.15s ease',
   border: '1.5px solid var(--accent-main)',
   backgroundColor: isActive ? 'var(--accent-main)' : 'var(--bg-surface)',
   color: isActive ? 'var(--bg-primary)' : 'var(--accent-main)',
-  boxShadow: isActive ? '2px 2px 0px var(--bg-primary), 2px 2px 0px 2px var(--accent-main)' : '4px 4px 0px var(--accent-main)',
+  boxShadow: isActive ? '2px 2px 0px var(--bg-primary), 2px 2px 0px 2px var(--accent-main)' : '3px 3px 0px var(--accent-main)',
   transform: isActive ? 'translate(2px, 2px)' : 'translate(0, 0)',
 });
 
-const filterEnter = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,-3px)'; e.currentTarget.style.boxShadow = '4px 8px 0px var(--accent-main)'; } };
-const filterLeave = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,0)';    e.currentTarget.style.boxShadow = '4px 4px 0px var(--accent-main)'; } };
+const filterEnter = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,-2px)'; e.currentTarget.style.boxShadow = '3px 5px 0px var(--accent-main)'; } };
+const filterLeave = (e, isActive) => { if (!isActive) { e.currentTarget.style.transform = 'translate(0,0)'; e.currentTarget.style.boxShadow = '3px 3px 0px var(--accent-main)'; } };
 
 export default function Projects() {
   const [active, setActive] = useState(DEFAULT_FILTER);
   const filtered = projects.filter(p => active === DEFAULT_FILTER || p.category === active.toLowerCase());
 
   return (
-    <div className="min-h-screen flex flex-col" style={containerStyle}>
+    <div className="min-h-screen w-full flex items-center justify-center py-20">
+      <div className="section-container flex flex-col">
 
       {/* Header */}
       <SectionHeader label="projects" title="Selected" highlightWord="works." />
@@ -134,6 +132,7 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </div>
   );
 }
